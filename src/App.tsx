@@ -1,9 +1,8 @@
 import { Layout } from "./componets/Layout";
+import { Vesting } from "./pages/Vesting";
 
 function App() {
-  return <Layout >
-    <h1>main content goes here </h1>
-  </Layout> 
+  return  <Vesting />
 }
 
 export default App;
