@@ -29,7 +29,7 @@ const NAVITEMS : NAVITEM[] =[
 
 export const Navbar = () => {
     return (
-        <nav className="w-full h-screen flex flex-col justify-between">
+        <nav className="w-full min-h-screen flex flex-col justify-between">
                 <div className="py-32">
                     <div className="flex flex-col justify-center  space-y-8 ">
                         {
