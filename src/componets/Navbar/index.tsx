@@ -15,15 +15,15 @@ const NAVITEMS : NAVITEM[] =[
     title: "Stores"
 }, {
     icon: AiOutlineSecurityScan,
-    title: "insurance"
+    title: "Insurance"
 },
  {
     icon:AiOutlineAccountBook ,
-    title: "investements"
+    title: "Investements"
 },
  {
     icon: AiOutlineHistory,
-    title: "insurance"
+    title: "History"
 }
 ] 
 
