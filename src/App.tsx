@@ -1,5 +1,9 @@
+import { Layout } from "./componets/Layout";
+
 function App() {
-  return <h1 className="text-center">vestor</h1>;
+  return <Layout >
+    <h1>main content goes here </h1>
+  </Layout> 
 }
 
 export default App;
