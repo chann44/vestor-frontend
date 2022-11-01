@@ -15,7 +15,7 @@ export const TokenDetails = () => {
                     </div>
                 </form>
                 <div className="w-full flex justify-end">
-                    <button>NEXT</button>
+                    <button className="text-xl font-bold">NEXT</button>
                 </div>
             </div>
         </div>
