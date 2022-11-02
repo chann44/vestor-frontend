@@ -10,8 +10,8 @@ export const Vesting = () => {
                 <h1 className="py-12 text-2xl text-text font-extrabold">Token Vesting</h1>
                 <div className="w-full  flex justify-center items-center">
                     {/* <MOdal /> */}
-                    <TokenDetails />
-                    {/* <VestingDetails /> */}
+                    {/* <TokenDetails /> */}
+                    <VestingDetails />
 
                 </div>
 
