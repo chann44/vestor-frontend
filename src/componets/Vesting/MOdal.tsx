@@ -1,6 +1,7 @@
 import { HiLightBulb } from "react-icons/hi"
 
 import { FaGasPump } from "react-icons/fa"
+import { useAppContext } from "../../context/AppContextProvider"
 
 const MOdalpoints: string[] = [
     "Approve the Transction for 15000  Of Fitmint Tokens.",
@@ -35,13 +36,22 @@ const ModalITem = () => {
 }
 
 export const MOdal = () => {
+    const { showModal, setShowModal } = useAppContext()
     return (
-        <div>
+        <div onClick={(e) => {
+            e.stopPropagation()
+            setShowModal(false)
+        }} className="">
             <div
+
                 className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-[#383838] bg-opacity-90 rounded-xl"
             >
                 <div className="relative  my-6 mx-auto max-w-[400px]">
-                    <div className="border-0  shadow-lg relative flex flex-col w-full bg-secondaryDark min-w-[300px] min-h-[300px] rounded-xl outline-none focus:outline-none">
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation()
+                        }}
+                        className="border-0  shadow-lg relative flex flex-col w-full bg-secondaryDark min-w-[300px] min-h-[300px] rounded-xl outline-none focus:outline-none">
                         <div className="relative p-6 flex-auto">
                             <ModalITem />
                         </div>

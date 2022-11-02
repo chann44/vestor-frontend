@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { AiFillDelete } from "react-icons/ai"
 import uuid from "react-uuid"
+import { useAppContext } from "../../context/AppContextProvider"
 
 
 interface another {
@@ -13,6 +14,9 @@ export const VestingDetails = () => {
     const [inputArr, setInputArr] = useState<any>([
         uuid(),
     ])
+
+
+    const { showModal, setShowModal } = useAppContext()
 
     const onchangeInput = (e: any, index: any, name: string) => {
         const temp = optoins
@@ -90,7 +94,10 @@ export const VestingDetails = () => {
                         <button className="bg-PrimaryBlue py-2 col-start-1 col-span-3 rounded-lg" onClick={() => {
                             addAnotherChoice()
                         }}>+Add Another</button>
-                        <button className="bg-PrimaryBlue py-2 col-start-4 col-span-3 rounded-lg">Approve and Vest</button>
+                        <button className="bg-PrimaryBlue py-2 col-start-4 col-span-3 rounded-lg" onClick={(e) => {
+                            e.stopPropagation()
+                            setShowModal(true)
+                        }}>Approve and Vest</button>
                     </div>
                 </div>
             </div>

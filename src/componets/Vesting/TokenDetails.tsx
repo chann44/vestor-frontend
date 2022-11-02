@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const TokenDetails = () => {
     return (
         <div className="bg-primaryDark min-w-[700px]  mx-auto rounded-xl p-8 space-y-6 ">
@@ -15,7 +17,9 @@ export const TokenDetails = () => {
                     </div>
                 </form>
                 <div className="w-full flex justify-end">
-                    <button className="text-xl font-bold">NEXT</button>
+                    <Link to={"/vesting/VestingDetails"} >
+                        <button className="text-xl font-bold">NEXT</button>
+                    </Link>
                 </div>
             </div>
         </div>
