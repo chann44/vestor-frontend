@@ -7,7 +7,6 @@ import { useAppContext } from "../context/AppContextProvider"
 
 export const Vesting = () => {
     const { showModal, setShowModal } = useAppContext()
-
     return (
         <Layout>
             <div className="space-y-20 px-5">
