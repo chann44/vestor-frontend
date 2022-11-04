@@ -21,7 +21,8 @@ export const Home = () => {
                     </div>
                 </div>
                 {/* assets */}
-                <div>
+                <div className=" p-8 space-y-5 ">
+                    <h1 className="text-text text-lg font-bold">ASSETS</h1>
                     <Assets />
                 </div>
             </div>
