@@ -45,8 +45,8 @@ export const data = {
 
 function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
     const colorStart = "#FF5F50"
-    const colorMid = "#FF5F50"
-    const colorEnd = "#FF5F50"
+    const colorMid = "#F866C6"
+    const colorEnd = "#ffffff"
 
     const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
 

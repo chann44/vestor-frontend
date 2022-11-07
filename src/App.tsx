@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Layout } from "./componets/Layout";
 import { Home } from "./pages/Home";
 import { Vesting } from "./pages/Vesting";
