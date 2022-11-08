@@ -15,15 +15,22 @@ import { AppContextProvider } from "./context/AppContextProvider";
 // chart setup 
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import { Home } from "./pages/Home";
+import { TokenDashboard } from "./pages/TokenDashBoard";
+import { TokenListing } from "./componets/TokenDashBoard/Listing";
+import { TokenDetailDashBoard } from "./componets/TokenDashBoard/TokenDashBoardDetails";
 Chart.register(CategoryScale);
 
 
 // router setup 
 const router = createBrowserRouter([
-
   {
     path: "/",
-    element: <App />,
+    element: <App />
+  },
+  {
+    path: "/home",
+    element: <Home />,
   },
   {
     path: "/vesting",
@@ -35,6 +42,19 @@ const router = createBrowserRouter([
       }, {
         path: "VestingDetails",
         element: <VestingDetails />
+      }
+    ]
+  },
+  {
+    path: "/tokendashboard",
+    element: <TokenDashboard />,
+    children: [
+      {
+        path: "",
+        element: <TokenListing />
+      }, {
+        path: "tokendetails",
+        element: <TokenDetailDashBoard />
       }
     ]
   }

@@ -9,6 +9,7 @@ import React, {
     useMemo,
     useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -31,6 +32,7 @@ export const useAppContext = () => {
 
 export const AppContextProvider = ({ children }: Props) => {
     const [showModal, setShowModal] = useState<boolean>(false)
+
 
     const shared_value = {
         showModal, setShowModal
