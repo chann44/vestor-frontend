@@ -1,6 +1,7 @@
 import vestor from "../abi/vestor.json"
 import vestorfac from '../abi/vestorfac.json';
 import { ethers } from 'ethers'; 
+import { erc20ABI } from "wagmi";
 
 const sum = async (_numbers,_vestingperiod ,cliffperiod) => {
     let sum = 0;
