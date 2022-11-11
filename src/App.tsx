@@ -4,13 +4,58 @@ import { Layout } from "./componets/Layout";
 import { Home } from "./pages/Home";
 import { Vesting } from "./pages/Vesting";
 
+import '@rainbow-me/rainbowkit/styles.css';
+import { QueryClient, QueryClientProvider} from "react-query";
+
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import {
+  chain,
+  configureChains,
+  createClient,
+  useQuery,
+  WagmiConfig,
+} from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+
+const { chains, provider } = configureChains(
+  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [
+    alchemyProvider({ apiKey: "LnkP2wQM1s7bEsucCYrX5l-0LhCk5-Bo" }),
+    publicProvider()
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  chains
+});
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider
+})
+
+const queryClient = new QueryClient();
+
 
 function App() {
   const navigate = useNavigate()
   useEffect(() => {
     navigate("/home")
   }, [])
-  return <><p>Loading...</p></>
+  return(
+    <QueryClientProvider client={queryClient}>
+    <WagmiConfig client={wagmiClient}>
+    <RainbowKitProvider chains={chains}>
+    <p>Loading...</p>
+    </RainbowKitProvider>
+    </WagmiConfig>
+ </QueryClientProvider> )
 }
 
 export default App;

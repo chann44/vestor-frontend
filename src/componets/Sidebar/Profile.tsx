@@ -10,7 +10,7 @@ export const ProfileCard = () => {
         </div>
         <div className="bg-thirdDark px-8 py-2 text-text rounded-xl">
             <div className="flex items-center space-x-3">
-                <p className="text-lg">Change Network</p>
+                <button className="text-lg">Connect Wallet</button>
                 <AiOutlineDown size={16} />
             </div>
         </div>

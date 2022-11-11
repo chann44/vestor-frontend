@@ -1,6 +1,8 @@
+import { ethers } from "ethers"
+import { useEffect, useState } from "react"
 import { AiFillProfile, AiOutlineUsb } from "react-icons/ai"
 import { Link } from "react-router-dom"
-
+import {getdata} from "/workspace/vestor-frontend/src/controllers/blockchain"
 export const AssetHead = () => {
     return (
         <div className="grid grid-cols-6 p-5">
@@ -32,7 +34,13 @@ export const AssetHead = () => {
 
 
 const AssetComponet = () => {
+
+
+
+
     return (
+        <>
+        
         <div className="grid grid-cols-6 p-5 bg-primaryDark items-center rounded-xl">
             <div className="col-start-1 col-span-1 grid grid-cols-2 ">
                 <div className="w-full flex items-center space-x-4">
@@ -40,7 +48,7 @@ const AssetComponet = () => {
                         <AiFillProfile size={32} className="rounded-full" />
                     </div>
                     <div>
-                        <p className="text-xs">FRONTLINE</p>
+                        <p className="text-xs">FRONT</p>
                         <p className="text-[10px] text-text-faded">PRONTLINE.com</p>
                     </div>
                 </div>
@@ -49,7 +57,7 @@ const AssetComponet = () => {
                 <p className="text-xs">12 months</p>
             </div>
             <div className="col-start-3 col-span-1 flex justify-center  ">
-                <p className="text-xs">120000</p>
+                <p className="text-xs">54454</p>
             </div>
             <div className="col-start-4 col-span-1  flex justify-center ">
                 <div className="flex flex-col justify-center items-center">
@@ -58,7 +66,7 @@ const AssetComponet = () => {
                 </div>
             </div>
             <div className="col-start-5 col-span-1 flex justify-center  ">
-                <p className="text-xs text-text-faded">0x923...923</p>
+                <p className="text-xs text-text-faded">0x465566557746huyyh</p>
             </div>
             <div className="col-start-6 col-span-1 flex justify-center  ">
                 <Link to={"tokendetails"}>
@@ -66,15 +74,29 @@ const AssetComponet = () => {
                 </Link>
             </div>
         </div>
+        </>
+
     )
+
 }
 
 
 export const TokenListing = () => {
+    const [Tokens, setTokens] = useState([])
+
+    useEffect(() => {
+        getTokens()
+      },[])
+
+    const getTokens = async () => {
+    setTokens(getdata());
+    console.log(getdata);
+}
     return (
         <div className="  w-full p-5 rounded-xl">
             <AssetHead />
-            <AssetComponet />
+            <AssetComponet/>
+           
         </div>
     )
 }
