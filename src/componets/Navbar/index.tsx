@@ -18,7 +18,7 @@ const NAVITEMS: NAVITEM[] = [
         link: "/vesting"
     }, {
         icon: AiOutlineSecurityScan,
-        title: "Insurance",
+        title: "Dasboard",
         link: "/tokendashboard"
     },
     {

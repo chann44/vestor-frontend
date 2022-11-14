@@ -9,14 +9,14 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
     return (
-        <div className="w-full grid grid-cols-12">
-            <div className="min-h-screen col-start-1 col-span-2 ">
+        <div className="w-full lg:grid grid-cols-12">
+            <div className="min-h-screen col-start-1 col-span-2 lg:block  hidden">
                 <Navbar />
             </div>
             <div className="min-h-screen col-start-3 col-span-7 bg-secondaryDark ">
                 {children}
             </div>
-            <div className="min-h-screen col-start-10 col-span-3 " >
+            <div className="min-h-screen col-start-10 col-span-3 hidden lg:block " >
                 <Sidebar />
             </div>
         </div>
