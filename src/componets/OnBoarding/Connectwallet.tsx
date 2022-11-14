@@ -38,5 +38,4 @@ export const ConnectWallet =  () => {
     </div>
     </div>
   )
-
 }

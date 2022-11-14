@@ -10,6 +10,7 @@ import React, {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { GetCoinINFO } from "../controllers";
 
 interface Props {
   children: ReactNode;
@@ -28,9 +29,19 @@ export const useAppContext = () => {
   return useContext(context);
 };
 
+
+
+
 export const AppContextProvider = ({ children }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [redirectLink, setRedirectLink] = useState<string>("");
+useEffect(() => {
+  try {
+    GetCoinINFO("0.5X Long Algorand")
+  }catch(e) {
+    console.log("we are fucked")
+  }
+}, [])
 
   const shared_value = {
     showModal,

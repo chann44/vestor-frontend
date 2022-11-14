@@ -67,8 +67,6 @@ export const vest = async (tokenname: string,token: string,vesting: number,cliff
 
   const res =  marketplaceContract._clone("0x2b2C71909164BaE81de0f95A51134E2dfaB07908",tokenname,token,investors,vesting,investorsamount,startime,cliff)
   alert("transcation submited");
-
-
 }
 
 export const datetounix = async (datestr: string) => {

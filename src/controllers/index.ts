@@ -24,7 +24,24 @@ export const getTokens = async (chainID: number, Address: string) => {
     return res.data;
 }
 
+const coingeckourl ='https://api.coingecko.com/api/v3/'
 
+
+
+export const GetCoinINFO = async(id: string) => {
+    let res = await coingeckoinstance.get(`https://api.coingecko.com/api/v3/search?query=${id}`)
+    console.log(res.data)
+    return res.data.coins;
+};
+export const GetCoinINFOByID = async(id: string) => {
+    let res = await coingeckoinstance.get(`https://api.coingecko.com/api/v3/coins/${id}`)
+    console.log(res.data)
+    return res.data;
+};
+
+const coingeckoinstance = axios.create({
+    baseURL: coingeckourl,
+  });
 
 
 
