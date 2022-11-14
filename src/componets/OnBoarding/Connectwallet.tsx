@@ -13,7 +13,7 @@ export const ConnectWallet =  () => {
         if( isConnected) {
             naviagate(redirectLink)
         }
-    },  [])
+    },  [isConnected])
     
   return (
     <div className='min-h-screen w-full space-y-7 flex flex-col justify-center items-center'>
