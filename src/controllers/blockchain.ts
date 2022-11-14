@@ -3,6 +3,7 @@ import vestorfac from '../abi/vestorfac.json';
 import { ethers } from 'ethers'; 
 import { erc20ABI } from "wagmi";
 
+
 const sum = async (_numbers: number[],_vestingperiod: number ,cliffperiod: number) => {
     let sum = 0;
 
@@ -19,7 +20,6 @@ const sum = async (_numbers: number[],_vestingperiod: number ,cliffperiod: numbe
 
 export const approve = async ( tokenAddress: string,vesting: number,cliff: number,inputList: any) => {
   let approvalamount: any = []
-  
   const provider = new ethers.providers.Web3Provider((window.ethereum as any));
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
@@ -53,7 +53,7 @@ export const vest = async (tokenname: string,token: string,vesting: number,cliff
   const provider = new ethers.providers.Web3Provider((window.ethereum as any));
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
-  let decimals = 18
+  let decimals = 17
   const marketplaceContract = new ethers.Contract(contract_address, vestorfac, signer )
 
   for (let index = 0; index < inputList.length; index++) {
@@ -73,10 +73,7 @@ export const vest = async (tokenname: string,token: string,vesting: number,cliff
 
 export const datetounix = async (datestr: string) => {
   const date = new Date(datestr);
-  console.log(date); // 👉️ Wed Jun 22 2022
-  
   const timestampInMs = date.getTime();
-  
   const unixTimestamp = Math.floor(date.getTime() / 1000);
   console.log(unixTimestamp);
   

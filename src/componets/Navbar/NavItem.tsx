@@ -24,8 +24,8 @@ export const NavItem = ({ Icon, title, classes, link }: Props) => {
         <Link to={link}>
             <div className={"flex flex-col justify-center hover:border-r border-purple   space-y-4 group " + (active ? "border-r border-purple" : " ")}>
                 <div className="flex items-center space-x-7">
-                    <div className={" w-12 h-12 bg-faddedDark flex justify-center items-center rounded-xl group-hover:bg-faddedBlue " + (active ? "bg-faddedBlue " : "")}>
-                        <Icon size={18} className={classes + " "} />
+                    <div className={" w-12 h-12 bg-faddedDark flex justify-center items-center rounded-xl group-hover:bg-faddedBlue " + (active ? "bg-purple/10 " : "")}>
+                        <Icon size={18} className={classes + " " + (active ? "  bg-faddedBlue  " : " ")} />
                     </div>
                     <div className="">
                         <p className={"text-lg group-hover:text-purple  " + classes + (active ? " text-purple  " : " ")}>{title}</p>

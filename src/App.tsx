@@ -20,6 +20,7 @@ import {
 } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import { ObBoarding } from "./componets/OnBoarding";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
@@ -45,14 +46,11 @@ const queryClient = new QueryClient();
 
 function App() {
   const navigate = useNavigate()
-  useEffect(() => {
-    navigate("/home")
-  }, [])
   return(
     <QueryClientProvider client={queryClient}>
     <WagmiConfig client={wagmiClient}>
     <RainbowKitProvider chains={chains}>
-    <p>Loading...</p>
+      <ObBoarding />
     </RainbowKitProvider>
     </WagmiConfig>
  </QueryClientProvider> )
