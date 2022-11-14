@@ -2,7 +2,7 @@ import { ethers } from "ethers"
 import { useEffect, useState } from "react"
 import { AiFillProfile, AiOutlineUsb } from "react-icons/ai"
 import { Link } from "react-router-dom"
-import {getdata} from "/workspace/vestor-frontend/src/controllers/blockchain"
+import { getdata } from "../../controllers/blockchain"
 export const AssetHead = () => {
     return (
         <div className="grid grid-cols-6 p-5">
@@ -34,10 +34,6 @@ export const AssetHead = () => {
 
 
 const AssetComponet = () => {
-
-
-
-
     return (
         <>
         
@@ -85,13 +81,13 @@ export const TokenListing = () => {
     const [Tokens, setTokens] = useState([])
 
     useEffect(() => {
-        getTokens()
-      },[])
-
-    const getTokens = async () => {
-    setTokens(getdata());
-    console.log(getdata);
-}
+        (
+            async() => {
+            console.log("data", await getdata())
+            }
+        )()
+    }, [])
+   
     return (
         <div className="  w-full p-5 rounded-xl">
             <AssetHead />

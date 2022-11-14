@@ -3,7 +3,7 @@ import vestorfac from '../abi/vestorfac.json';
 import { ethers } from 'ethers'; 
 import { erc20ABI } from "wagmi";
 
-const sum = async (_numbers,_vestingperiod ,cliffperiod) => {
+const sum = async (_numbers: number[],_vestingperiod: number ,cliffperiod: number) => {
     let sum = 0;
 
   for (let i = 0; i < _numbers.length; i++) {
@@ -17,10 +17,10 @@ const sum = async (_numbers,_vestingperiod ,cliffperiod) => {
 }
 
 
-export const approve = async ( tokenAddress,vesting,cliff,inputList) => {
-  let approvalamount = []
+export const approve = async ( tokenAddress: string,vesting: number,cliff: number,inputList: any) => {
+  let approvalamount: any = []
   
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = new ethers.providers.Web3Provider((window.ethereum as any));
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
 
@@ -34,10 +34,10 @@ export const approve = async ( tokenAddress,vesting,cliff,inputList) => {
     approvalamount.push(item.approvalamount)
   }
 
-  const added = (await sum(approvalamount,vesting,cliff)).toString()
+  const added: number = Number((await sum(approvalamount,vesting,cliff)).toString())
   var percent = (0.01 / 100) * added ;
   const addwithfees = (await sum(approvalamount,vesting,cliff) + percent).toString()
-  console.log(ethers.utils.parseUnits(added, decimals))
+  console.log(ethers.utils.parseUnits(added.toString(), decimals))
 
   const approval = await erc20approval.approve(contract_address,ethers.utils.parseUnits(addwithfees, decimals))
   const receipt = provider.waitForTransaction(approval.hash, 1, 150000)
@@ -46,14 +46,14 @@ export const approve = async ( tokenAddress,vesting,cliff,inputList) => {
 }
 
 
-export const vest = async (tokenname,token,vesting,cliff,startime,inputList) => {
+export const vest = async (tokenname: string,token: string,vesting: number,cliff: number,startime: string,inputList: any) => {
   let investors =[]
   let investorsamount = []
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = new ethers.providers.Web3Provider((window.ethereum as any));
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
-
+  let decimals = 18
   const marketplaceContract = new ethers.Contract(contract_address, vestorfac, signer )
 
   for (let index = 0; index < inputList.length; index++) {
@@ -71,7 +71,7 @@ export const vest = async (tokenname,token,vesting,cliff,startime,inputList) => 
 
 }
 
-export const datetounix = async (datestr) => {
+export const datetounix = async (datestr: string) => {
   const date = new Date(datestr);
   console.log(date); // 👉️ Wed Jun 22 2022
   
@@ -84,7 +84,7 @@ export const datetounix = async (datestr) => {
 
 
 
-  export const monthstoseconds =  (months) => {
+  export const monthstoseconds =  (months: number) => {
      const convert = months * 2629800
       console.log(convert)
     
@@ -92,14 +92,10 @@ export const datetounix = async (datestr) => {
 
   export const getdata = async () =>{
     let peopleArray =[]
-   
-    
     const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider((window.ethereum) as any);
     const accounts = await provider.listAccounts();
     const add = accounts[0];
-  
-    
   
     const signer = provider.getSigner();
     const marketplaceContract = new ethers.Contract(contract_address, vestorfac, signer)
