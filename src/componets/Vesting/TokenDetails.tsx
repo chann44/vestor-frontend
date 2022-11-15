@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { AiOutlineBlock, AiOutlineCheck, AiOutlineRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useVestingContext } from "../../context/VestingConfext";
 import { GetCoinINFO, GetCoinINFOByID } from "../../controllers";
 
-interface Token {
+export interface Token {
   id: string;
   name: string;
   api_symbol: string;
@@ -14,15 +15,14 @@ interface Token {
 }
 
 
-interface TokenDetail {
+export interface TokenDetail {
   contract_address: string
   description: any
 
 }
 
 export const TokenDetails = () => {
-  const [name, setName] = useState("");
-  const [tokenInfo, setTokenInfo] = useState<TokenDetail | null>(null);
+  const {name, setTokenInfo, tokenInfo, setName} = useVestingContext()
   const [exist, setExist] = useState(false)
 
   useEffect(() => {

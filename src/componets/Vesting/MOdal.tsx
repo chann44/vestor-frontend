@@ -2,6 +2,9 @@ import { HiLightBulb } from "react-icons/hi"
 
 import { FaGasPump } from "react-icons/fa"
 import { useAppContext } from "../../context/AppContextProvider"
+import { useVestingContext } from "../../context/VestingConfext"
+import { useState } from "react"
+import { approve, vest } from "../../controllers/blockchain"
 
 const MOdalpoints: string[] = [
     "Approve the Transction for 15000  Of Fitmint Tokens.",
@@ -11,6 +14,8 @@ const MOdalpoints: string[] = [
 
 
 const ModalITem = () => {
+  const {optoins, setOptions, inputArr, tokenInfo, name,  setInputArr, vestingDate, setVestingDate, vestingPeriod, setVestingPeriod, onchangeInput, DelteINput, addAnotherChoice, clifPeriod, setCliffPeriod } = useVestingContext()
+  const [isAproved, setIsaproved] = useState(false)
     return (
         <>
             <div className="w-full pt-12">
@@ -27,8 +32,14 @@ const ModalITem = () => {
                     }
                 </div>
                 <div className="flex space-x-4  items-center mt-12 ">
-                    <button className="bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 font-extrabold w-full">Approve</button>
-                    <button className="bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 w-full font-extrabold flex items-center justify-center space-x-3">Send <span className="space-x-3"><FaGasPump className="text-text ml-6" /></span></button>
+                    <button className="bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 font-extrabold w-full" onClick={() => {
+                            approve(tokenInfo?.contract_address, Number(vestingPeriod), Number(clifPeriod), optoins, setIsaproved)
+                    }}>Approve</button>
+                    <button
+                    onClick={() => {
+                        vest(name,tokenInfo?.contract_address, Number(vestingPeriod), Number(clifPeriod), vestingDate, optoins )
+                    }}  
+                    disabled={!isAproved} className= {"bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 w-full font-extrabold flex items-center justify-center space-x-3 "  + (!isAproved ? " bg-PrimaryBlue/30 cursor-not-allowed ": " ")} >Send <span className="space-x-3"><FaGasPump className="text-text ml-6" /></span></button>
                 </div>
             </div>
         </>

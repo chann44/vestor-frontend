@@ -18,8 +18,9 @@ const sum = async (_numbers: number[],_vestingperiod: number ,cliffperiod: numbe
 }
 
 
-export const approve = async ( tokenAddress: string,vesting: number,cliff: number,inputList: any) => {
+export const approve = async ( tokenAddress: string | any,vesting: number,cliff: number, inputarr: any, setisaproved: Function) => {
   let approvalamount: any = []
+  console.log(tokenAddress, vesting, cliff, inputarr)
   const provider = new ethers.providers.Web3Provider((window.ethereum as any));
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
@@ -27,9 +28,9 @@ export const approve = async ( tokenAddress: string,vesting: number,cliff: numbe
   const erc20approval = new ethers.Contract(tokenAddress, erc20ABI, signer )
   const decimals = 18
 
-  for (let index = 0; index < inputList.length; index++) {
+  for (let index = 0; index < inputarr.length; index++) {
     let item = {
-      approvalamount:parseInt(inputList[index].LastName)
+      approvalamount:parseInt(inputarr[index].ammount)
     }
     approvalamount.push(item.approvalamount)
   }
@@ -42,11 +43,12 @@ export const approve = async ( tokenAddress: string,vesting: number,cliff: numbe
   const approval = await erc20approval.approve(contract_address,ethers.utils.parseUnits(addwithfees, decimals))
   const receipt = provider.waitForTransaction(approval.hash, 1, 150000)
   alert("approval success")
+  setisaproved(true)
 
 }
 
 
-export const vest = async (tokenname: string,token: string,vesting: number,cliff: number,startime: string,inputList: any) => {
+export const vest = async (tokenname: string ,token: any ,vesting: number,cliff: number,startime: string,inputList: any) => {
   let investors =[]
   let investorsamount = []
 
@@ -58,8 +60,8 @@ export const vest = async (tokenname: string,token: string,vesting: number,cliff
 
   for (let index = 0; index < inputList.length; index++) {
     let item = {
-      investor:inputList[index].firstName.toString(),
-      investoramount:inputList[index].LastName.toString(),
+      investor:inputList[index].addrs.toString(),
+      investoramount:inputList[index].ammount.toString(),
     }
     investors.push(item.investor)
     investorsamount.push(ethers.utils.parseUnits(item.investoramount, decimals)) 
@@ -114,6 +116,5 @@ export const datetounix = async (datestr: string) => {
         
         peopleArray.push(item)
       }
-  
       return peopleArray
   }
