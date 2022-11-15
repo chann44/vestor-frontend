@@ -45,6 +45,11 @@ export const TokenDetails = () => {
     })();
   }, [name]);
 
+
+  useEffect(() => {
+      
+  }, [tokenInfo])
+
   return (
     <div className="bg-primaryDark min-w-[700px]  mx-auto rounded-xl p-8 space-y-6 ">
       <h1 className="text-xl">Enter Token Details</h1>
