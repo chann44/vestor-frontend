@@ -21,6 +21,7 @@ export const getPortfolioBalance = async (chainID: number, Address: string) => {
 
 export const getTokens = async (chainID: number, Address: string) => {
     const res = await instance.get(`/${chainID}/address/${Address}/balances_v2/?key=${APIKEY}`)
+    console.log("res", res)
     return res.data;
 }
 

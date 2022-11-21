@@ -1,6 +1,6 @@
 import vestor from "../abi/vestor.json";
 import vestorfac from "../abi/vestorfac.json";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { erc20ABI } from "wagmi";
 
 const sum =  (
@@ -32,7 +32,7 @@ export const approve = async (
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
 
-  const erc20approval = new ethers.Contract(tokenAddress, erc20ABI, signer);
+  const erc20approval = new ethers.Contract("0x32aA774e671aaf4926f312bCB9498A34b9f50768", erc20ABI, signer);
   const decimals = 18;
 
   for (let index = 0; index < inputarr.length; index++) {
@@ -98,20 +98,20 @@ export const vest = async (
 
   const res = marketplaceContract._clone(
     "0x2b2C71909164BaE81de0f95A51134E2dfaB07908",
-    tokenname,
-    token,
+    "FuckYou",
+    "0x32aA774e671aaf4926f312bCB9498A34b9f50768",
     investors,
     vesting,
-    investorsamount,
-    datetounix(startime),
+    [BigNumber.from('1')],
+    0,
     cliff
   );
   alert("transcation submited");
 };
 
 export const datetounix = async (datestr: string) => {
+  console.log(datestr)
   const date = new Date(datestr);
-  const timestampInMs = date.getTime();
   const unixTimestamp = Math.floor(date.getTime() / 1000);
   console.log(unixTimestamp);
 };
