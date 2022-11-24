@@ -1,99 +1,111 @@
-import { ethers } from "ethers"
-import { useEffect, useState } from "react"
-import { AiFillProfile, AiOutlineUsb } from "react-icons/ai"
-import { Link } from "react-router-dom"
-import { getdata } from "../../controllers/blockchain"
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import { AiFillProfile, AiOutlineUsb } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { getdata } from "../../controllers/blockchain";
+import { useVestedTokesn } from "../../hooks/useVestedTokens";
+
+interface VestedToken {
+  name: string;
+  tokenAddress: string;
+  ammount: string;
+  cliffamount: string;
+  time: string;
+}
+
 export const AssetHead = () => {
-    return (
-        <div className="grid grid-cols-6 p-5">
-            <div className="col-start-1 col-span-1 grid grid-cols-2 ">
-                <div className=" col-start-1 col-span-1 flex justify-center items-center">
-                    <p className="text-sm text-text-faded">TOKEN</p>
-                </div>
-            </div>
-            <div className="col-start-2 col-span-1    flex justify-center">
-                <p className="text-xs text-text-faded">VESTING</p>
-            </div>
-            <div className="col-start-3 col-span-1 flex justify-center  ">
-                <p className="text-xs text-text-faded">AMOUNT</p>
-            </div>
-            <div className="col-start-4 col-span-1  flex justify-center ">
-                <p className="text-xs text-text-faded">UNLOCK Date</p>
-            </div>
-            <div className="col-start-5 col-span-1 flex justify-center  ">
-                <p className="text-xs text-text-faded">TOKEN ADDRESS</p>
-            </div>
-            <div className="col-start-6 col-span-1 flex justify-center  ">
-                <p className="text-xs text-text-faded">Action</p>
-            </div>
+  return (
+    <div className="grid grid-cols-6 p-5">
+      <div className="col-start-1 col-span-1 grid grid-cols-2 ">
+        <div className=" col-start-1 col-span-1 flex justify-center items-center">
+          <p className="text-sm text-text-faded">TOKEN</p>
         </div>
+      </div>
+      <div className="col-start-2 col-span-1    flex justify-center">
+        <p className="text-xs text-text-faded">VESTING</p>
+      </div>
+      <div className="col-start-3 col-span-1 flex justify-center  ">
+        <p className="text-xs text-text-faded">AMOUNT</p>
+      </div>
+      <div className="col-start-4 col-span-1  flex justify-center ">
+        <p className="text-xs text-text-faded">UNLOCK Date</p>
+      </div>
+      <div className="col-start-5 col-span-1 flex justify-center  ">
+        <p className="text-xs text-text-faded">TOKEN ADDRESS</p>
+      </div>
+      <div className="col-start-6 col-span-1 flex justify-center  ">
+        <p className="text-xs text-text-faded">Action</p>
+      </div>
+    </div>
+  );
+};
 
-
-    )
-}
-
-
-const AssetComponet = () => {
-    return (
-        <>
-        
-        <div className="grid grid-cols-6 p-5 bg-primaryDark items-center rounded-xl">
-            <div className="col-start-1 col-span-1 grid grid-cols-2 ">
-                <div className="w-full flex items-center space-x-4">
-                    <div className="rounded-full">
-                        <AiFillProfile size={32} className="rounded-full" />
-                    </div>
-                    <div>
-                        <p className="text-xs">FRONT</p>
-                        <p className="text-[10px] text-text-faded">PRONTLINE.com</p>
-                    </div>
-                </div>
+const AssetComponet = ({
+  name,
+  ammount,
+  cliffamount,
+  time,
+  tokenAddress,
+}: VestedToken) => {
+  return (
+    <>
+      <div className="grid grid-cols-6 p-5 bg-primaryDark items-center rounded-xl">
+        <div className="col-start-1  col-span-1 grid grid-cols-2 ">
+          <div className=" w-full col-start-1 col-span-2 flex items-center">
+            <div className="rounded-full w-12 h-12 flex justify-center items-center">
+              <AiFillProfile className="rounded-full" />
             </div>
-            <div className="col-start-2 col-span-1   text-text-faded flex justify-center">
-                <p className="text-xs">12 months</p>
+            <div className=" flex-grow">
+              <p className="text-sm w-full">{name}</p>
             </div>
-            <div className="col-start-3 col-span-1 flex justify-center  ">
-                <p className="text-xs">54454</p>
-            </div>
-            <div className="col-start-4 col-span-1  flex justify-center ">
-                <div className="flex flex-col justify-center items-center">
-                    <p className="text-xs">14 Apr 2022</p>
-                    <p className="text-[10px] text-text-faded">at 8:30</p>
-                </div>
-            </div>
-            <div className="col-start-5 col-span-1 flex justify-center  ">
-                <p className="text-xs text-text-faded">0x465566557746huyyh</p>
-            </div>
-            <div className="col-start-6 col-span-1 flex justify-center  ">
-                <Link to={"tokendetails"}>
-                    <button className="text-xs bg-PrimaryBlue px-4 py-1 rounded-xl">View</button>
-                </Link>
-            </div>
+          </div>
         </div>
-        </>
-
-    )
-
-}
-
+        <div className="col-start-2 col-span-1   text-text-faded flex justify-center">
+          <p className="text-xs">12 months</p>
+        </div>
+        <div className="col-start-3 col-span-1 flex justify-center  ">
+          <p className="text-xs">{parseInt(ammount, 18)}</p>
+        </div>
+        <div className="col-start-4 col-span-1  flex justify-center ">
+          <div className="flex flex-col justify-center items-center">
+            <p className="text-xs">
+              {new Date(parseInt(time, 18)).toDateString()}
+            </p>
+          </div>
+        </div>
+        <div className="col-start-5 col-span-1 flex justify-center  ">
+          <p className="text-xs text-text-faded">{tokenAddress.slice(0, 10)}</p>
+        </div>
+        <div className="col-start-6 col-span-1 flex justify-center  ">
+          <Link to={`tokendetails/${tokenAddress}`}>
+            <button className="text-xs bg-PrimaryBlue px-4 py-1 rounded-xl">
+              View
+            </button>
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export const TokenListing = () => {
-    const [Tokens, setTokens] = useState([])
+  const {tokens} = useVestedTokesn()
 
-    useEffect(() => {
-        (
-            async() => {
-            console.log("data", await getdata())
-            }
-        )()
-    }, [])
-   
-    return (
-        <div className="  w-full p-5 rounded-xl">
-            <AssetHead />
-            <AssetComponet/>
-           
-        </div>
-    )
-}
-
+  return (
+    <div className="  w-full p-5 rounded-xl">
+      <AssetHead />
+      {tokens &&
+        tokens.map((token: any) => {
+          return (
+            <AssetComponet
+              ammount={token.amount._hex}
+              name={token.name}
+              cliffamount={token.cliffamount._hex}
+              time={token.time._hex}
+              tokenAddress={token.tokenaddress}
+            />
+          );
+        })}
+    </div>
+  );
+};

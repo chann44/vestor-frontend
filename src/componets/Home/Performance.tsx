@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react"
 import { AiOutlineArrowRight, AiOutlineLogout } from "react-icons/ai"
 import { BsArrowRight } from "react-icons/bs"
+import { useClient } from "wagmi"
+import { getPortfolioBalance } from "../../controllers"
 import { LineChart } from "../Charts/LineChar"
 
 
 export const PerformanceCard = () => {
+    const [historicalPortfolio, setHistoricalPortfolio] = useState()
+    const {data: cleintData} = useClient()
+    useEffect(() => {
+        (async () => {
+          if (cleintData) {
+            const data =
+              cleintData?.chain?.id &&
+              cleintData?.account &&
+              (await getPortfolioBalance(cleintData?.chain?.id, cleintData?.account));
+            console.log("historyData", data);
+          }
+        })();
+      }, [cleintData]);
+
     return (
         <div>
             <div className="p-8 space-y-12 bg-primaryDark min-h-[400px] max-h-[400px]">
@@ -26,10 +43,7 @@ export const PerformanceCard = () => {
                     </div>
                 </div>
                 <div className="flex items-center">
-                    <div className="w-[50%]">
-                        <LineChart />
-                    </div>
-                    <div className="w-[50%]">
+                    <div className="w-full">
                         <LineChart />
                     </div>
                 </div>

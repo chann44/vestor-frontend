@@ -16,17 +16,16 @@ export const getWalletTranscations = async (ChainId:number, Address: string) => 
 
 export const getPortfolioBalance = async (chainID: number, Address: string) => {
     const res = await instance.get(`/${chainID}/address/${Address}/portfolio_v2/?key=${APIKEY}`)
+    console.log("historyPortfolio", res.data)
     return res.data
 }
 
 export const getTokens = async (chainID: number, Address: string) => {
     const res = await instance.get(`/${chainID}/address/${Address}/balances_v2/?key=${APIKEY}`)
-    console.log("res", res)
     return res.data;
 }
 
 const coingeckourl ='https://api.coingecko.com/api/v3/'
-
 
 
 export const GetCoinINFO = async(id: string) => {
