@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineCopy, AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { getdata } from "../../controllers/blockchain";
 import { useSingleVestedTokenInfo } from "../../hooks/useVestedTokens";
@@ -7,21 +7,22 @@ import { LineChart } from "../Charts/LineChar";
 
 export const TokenDetailDashBoard = () => {
   const { tokenAddress } = useParams();
-  const { tokenInfo } = useSingleVestedTokenInfo(tokenAddress);
+  const { tokenInfo, coinInfo } = useSingleVestedTokenInfo(tokenAddress);
 
   useEffect(() => {
     console.log("add", tokenAddress);
-    console.log(tokenInfo);
-  }, [tokenAddress]);
+    console.log("details", tokenInfo);
+    console.log("coin details",coinInfo);
+  }, [tokenAddress, coinInfo, tokenInfo]);
 
   return (
     <>
-      {tokenInfo ? (
+      {tokenInfo && coinInfo ? (
         <div className="bg-primaryDark max-w-3xl p-6 py-12 w-full space-y-10 rounded-xl">
           {/* top part */}
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-full border">
-              <img src="" alt="Img" />
+            <div className="w-8 h-8 rounded-full ">
+              <img src={coinInfo?.image?.thumb} alt="Img" />
             </div>
             <p className="text-2xl font-extrabold">{tokenInfo?.name}</p>
           </div>
@@ -32,7 +33,7 @@ export const TokenDetailDashBoard = () => {
               <div className="col-start-1 col-span-2 px-8 flex justify-between">
                 <div>
                   <p className="text-xs">tokens left to claim:</p>
-                  <p className="text-sm">124000</p>
+                  <p className="text-sm">{parseInt(tokenInfo.cliffamount._hex)}</p>
                 </div>
                 <div>
                   <p className="text-xs">lock Period: 12 months</p>
@@ -62,15 +63,15 @@ export const TokenDetailDashBoard = () => {
               </div>
               <div className="col-start-3 col-span-1 pt-8 space-y-3">
                 <div className="bg-thirdDark w-full py-2 rounded-lg flex justify-around items-center">
-                  <p className="text-sm">Token Address</p>
-                  <AiOutlineLogout className="text-sm -rotate-45" />
+                  <a  target="_blank" className="text-sm">Token Address</a>
+                  <AiOutlineCopy className="text-sm -rotate-45" />
                 </div>
                 <div className="bg-thirdDark w-full py-2 flex rounded-lg justify-around items-center">
-                  <p className="text-sm">Explorer</p>
+                  <a  href={coinInfo?.links?.blockchain_site[0]} className="text-sm">Explorer</a>
                   <AiOutlineLogout className="text-sm -rotate-45" />
                 </div>
                 <div className="bg-thirdDark w-full py-2 rounded-lg flex justify-around items-center">
-                  <p className="text-sm">Website</p>
+                  <a href={coinInfo?.links?.homepage[0]} className="text-sm">Website</a>
                   <AiOutlineLogout className="text-sm -rotate-45" />
                 </div>
                 <div className="bg-thirdDark w-full py-2 rounded-lg flex justify-around items-center">
@@ -83,7 +84,7 @@ export const TokenDetailDashBoard = () => {
               <div className="col-start-1 col-span-2">
                 <div className="rounded-lg flex w-full bg-thirdDark items-center justify-between px-6 py-2">
                   <p className="text-sm">
-                    Vesting Contract Adress: 0x12335435646...{" "}
+                    Vesting Contract Adress: {tokenInfo.poolid.slice(0,20)}...{" "}
                   </p>
                   <AiOutlineLogout className="text-sm -rotate-45" />
                 </div>

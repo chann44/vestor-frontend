@@ -2,10 +2,8 @@ import { Assets } from "../componets/Home/Asset"
 import { PerformanceCard } from "../componets/Home/Performance"
 import { Transections } from "../componets/Home/TransectionHistory"
 import { Layout } from "../componets/Layout"
-
 export const Home = () => {
     return (
-
         <Layout>
             <div>
                 <div className="w-full  grid grid-cols-12 p-8 gap-6">

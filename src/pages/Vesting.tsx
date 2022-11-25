@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom"
 import { Layout } from "../componets/Layout"
 import { MOdal } from "../componets/Vesting/MOdal"
-import { TokenDetails } from "../componets/Vesting/TokenDetails"
-import { VestingDetails } from "../componets/Vesting/VestingDetail"
 import { useAppContext } from "../context/AppContextProvider"
 import { VestingContextProvider } from "../context/VestingConfext"
 
