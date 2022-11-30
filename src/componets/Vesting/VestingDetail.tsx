@@ -103,7 +103,7 @@ export const VestingDetails = () => {
               </div>
             );
           })}
-          <div className="col-start-7 col-span-6  grid grid-cols-6 gap-4">
+          <div className="col-start-1 col-span-12 xl:col-start-7 xl:col-span-6 grid grid-cols-6 gap-4">
             <button
               className="bg-PrimaryBlue py-2 col-start-1 col-span-3 rounded-lg"
               onClick={() => {

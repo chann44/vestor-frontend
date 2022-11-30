@@ -7,13 +7,7 @@ import { LineChart } from "../Charts/LineChar";
 
 export const TokenDetailDashBoard = () => {
   const { tokenAddress } = useParams();
-  const { tokenInfo, coinInfo } = useSingleVestedTokenInfo(tokenAddress);
-
-  useEffect(() => {
-    console.log("add", tokenAddress);
-    console.log("details", tokenInfo);
-    console.log("coin details",coinInfo);
-  }, [tokenAddress, coinInfo, tokenInfo]);
+  const { tokenInfo, coinInfo } = useSingleVestedTokenInfo("0xa4b6e76bba7413b9b4bd83f4e3aa63cc181d869f");
 
   return (
     <>

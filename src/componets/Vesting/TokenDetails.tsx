@@ -51,7 +51,7 @@ export const TokenDetails = () => {
   }, [tokenInfo])
 
   return (
-    <div className="bg-primaryDark min-w-[700px]  mx-auto rounded-xl p-8 space-y-6 ">
+    <div className="bg-primaryDark w-full xl:min-w-[700px]  mx-auto rounded-xl p-8 space-y-6 ">
       <h1 className="text-xl">Enter Token Details</h1>
       <div className="space-y-6">
         <form action="" className="space-y-8">
