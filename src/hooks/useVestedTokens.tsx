@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Token, TokenDetail } from "../componets/Vesting/TokenDetails";
-import { GetCoinINFO, GetCoinINFOByID } from "../controllers";
+import {
+  GetCoinINFO,
+  GetCoinINFOByID,
+  getCoinPriceChart,
+} from "../controllers";
 import { getdata } from "../controllers/blockchain";
 
 export const useVestedTokesn = () => {
@@ -9,6 +13,7 @@ export const useVestedTokesn = () => {
   useEffect(() => {
     (async () => {
       const res = await getdata();
+      console.log("Id hai kya bhai", res);
       setTokens(() => {
         return res;
       });
@@ -18,16 +23,13 @@ export const useVestedTokesn = () => {
   return { tokens };
 };
 
-export const useSingleVestedTokenInfo = (name: string | undefined) => {
+export const useSingleVestedTokenInfo = (id: string | undefined) => {
   const [tokenInfo, setTokenInfo] = useState<any>();
   const [coinInfo, setCoinInfo] = useState<any>();
-  const [tokenExtraDetail, setTokeExtraDetails] = useState<any>()
   const { tokens } = useVestedTokesn();
-  
-  const filterToken = (
-    tokens: Array<any>,
-    name: string
-  ): Array<any> => {
+  const [priceData, setPriceData] = useState<any>();
+
+  const filterToken = (tokens: Array<any>, name: string): Array<any> => {
     return tokens.filter((token) => {
       if (token.name !== name) {
         return token;
@@ -38,35 +40,28 @@ export const useSingleVestedTokenInfo = (name: string | undefined) => {
   };
 
   useEffect(() => {
-    console.log("tokens")
-    if (tokens && name ) {
-        console.log("tokens", tokens)
-      const filtred = filterToken(tokens, name);
+    if (tokens && id) {
+      const filtred = filterToken(tokens, id);
       setTokenInfo(filtred[0]);
     }
   }, [tokens, name]);
 
-
   useEffect(() => {
     (async () => {
-        console.log("hi")
-      if (name) {
-        console.log("i am token info")
-        const coins: Token[] = await GetCoinINFO("Fitmint")
-        console.log("coins,",  coins)
-        if(coins.length > 0) {
-        coins.map(async (coin) => {
-          if(coin.name == "Fitmint") {
-              const coinInfo: TokenDetail = await GetCoinINFOByID(coin.id)
-              console.log( "coinifo< ", coinInfo)
-              setCoinInfo(coinInfo)
-              return
-          }
-        })
-        } else {
-        }
-     }
+      console.log("hi");
+      if (id) {
+        const coinInfoPromise = GetCoinINFOByID(id);
+        const chartDataPromise = getCoinPriceChart(id);
+
+        const coinInfo = await coinInfoPromise;
+        const chartData = await chartDataPromise;
+        setCoinInfo(coinInfo as TokenDetail);
+        setPriceData(chartData);
+        return;
+      } else {
+        console.log("you dont provided the thing ");
+      }
     })();
   }, [name]);
-  return { tokenInfo, coinInfo };
+  return { tokenInfo, coinInfo, priceData };
 };

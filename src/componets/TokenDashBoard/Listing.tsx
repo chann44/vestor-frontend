@@ -4,6 +4,7 @@ import { AiFillProfile, AiOutlineUsb } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { getdata } from "../../controllers/blockchain";
 import { useVestedTokesn } from "../../hooks/useVestedTokens";
+import { AssetScal } from "../sckelton/assetScale";
 
 interface VestedToken {
   name: string;
@@ -11,6 +12,7 @@ interface VestedToken {
   ammount: string;
   cliffamount: string;
   time: string;
+  id: string;
 }
 
 export const AssetHead = () => {
@@ -46,6 +48,7 @@ const AssetComponet = ({
   cliffamount,
   time,
   tokenAddress,
+  id,
 }: VestedToken) => {
   return (
     <>
@@ -77,7 +80,7 @@ const AssetComponet = ({
           <p className="text-xs text-text-faded">{tokenAddress.slice(0, 10)}</p>
         </div>
         <div className="col-start-6 col-span-1 flex justify-center  ">
-          <Link to={`tokendetails/${tokenAddress}`}>
+          <Link to={`tokendetails/${name}`}>
             <button className="text-xs bg-PrimaryBlue px-4 py-1 rounded-xl">
               View
             </button>
@@ -89,15 +92,16 @@ const AssetComponet = ({
 };
 
 export const TokenListing = () => {
-  const {tokens} = useVestedTokesn()
+  const { tokens } = useVestedTokesn();
 
   return (
     <div className="  w-full p-5 rounded-xl">
       <AssetHead />
-      {tokens &&
+      {tokens ? (
         tokens.map((token: any) => {
           return (
             <AssetComponet
+              id={token.id}
               ammount={token.amount._hex}
               name={token.name}
               cliffamount={token.cliffamount._hex}
@@ -105,7 +109,10 @@ export const TokenListing = () => {
               tokenAddress={token.tokenaddress}
             />
           );
-        })}
+        })
+      ) : (
+        <AssetScal />
+      )}
     </div>
   );
 };

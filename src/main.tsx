@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         element: <TokenListing />,
       },
       {
-        path: "tokendetails/:tokenAddress",
+        path: "tokendetails/:id",
         element: <TokenDetailDashBoard />,
       },
     ],

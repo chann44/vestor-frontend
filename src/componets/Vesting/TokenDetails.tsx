@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiOutlineBlock, AiOutlineCheck, AiOutlineRight } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useVestingContext } from "../../context/VestingConfext";
 import { GetCoinINFO, GetCoinINFOByID } from "../../controllers";
 
@@ -14,41 +14,34 @@ export interface Token {
   large: string;
 }
 
-
 export interface TokenDetail {
-  contract_address: string
-  description: any
-
+  contract_address: string;
+  description: any;
 }
 
 export const TokenDetails = () => {
-  const {name, setTokenInfo, tokenInfo, setName} = useVestingContext()
-  const [exist, setExist] = useState(false)
+  const { name, setTokenInfo, tokenInfo, setName } = useVestingContext();
+  const [exist, setExist] = useState(false);
 
   useEffect(() => {
     (async () => {
       if (name) {
-        const coins: Token[] = await GetCoinINFO(name)
-        if(coins.length > 0) {
-        coins.map(async (coin) => {
-          if(coin.name == name) {
-              const coinInfo: TokenDetail = await GetCoinINFOByID(coin.id)
-              setTokenInfo(coinInfo)
-              setExist(true)
-            return 
-          }
-        })
+        const coins: Token[] = await GetCoinINFO(name);
+        if (coins.length > 0) {
+          coins.map(async (coin) => {
+            if (coin.name == name) {
+              const coinInfo: TokenDetail = await GetCoinINFOByID(coin.id);
+              setTokenInfo(coinInfo);
+              setExist(true);
+              return;
+            }
+          });
         } else {
-          setExist(false)
+          setExist(false);
         }
-     }
+      }
     })();
   }, [name]);
-
-
-  useEffect(() => {
-      
-  }, [tokenInfo])
 
   return (
     <div className="bg-primaryDark w-full xl:min-w-[700px]  mx-auto rounded-xl p-8 space-y-6 ">
@@ -57,15 +50,21 @@ export const TokenDetails = () => {
         <form action="" className="space-y-8">
           <div className="bg-secondaryDark flex items-center w-full p-3 rounded-lg ">
             <input
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value)
-            }}
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
               type="text"
               className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
               placeholder="Enter Tokne Name"
             />
-            {name ? exist ? <AiOutlineCheck className="text-green" />: <AiOutlineBlock className="text-red" />: null}
+            {name ? (
+              exist ? (
+                <AiOutlineCheck className="text-green" />
+              ) : (
+                <AiOutlineBlock className="text-red" />
+              )
+            ) : null}
           </div>
           <div className="bg-secondaryDark w-full p-3  rounded-lg">
             <input
