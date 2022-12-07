@@ -68,8 +68,6 @@ export const TokenDetailDashBoard = () => {
   const { id } = useParams();
   const { tokenInfo, coinInfo, priceData } =
     useSingleVestedTokenInfo("fitmint");
-
-  console.log(tokenInfo);
   return (
     <>
       {tokenInfo && coinInfo ? (
