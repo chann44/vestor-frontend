@@ -63,6 +63,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/investorTransection",
+    element: <InvestorTransection />,
+  },
 ]);
 
 import {
@@ -81,6 +85,7 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { Select } from "./componets/OnBoarding/Select";
 import { ConnectWallet } from "./componets/OnBoarding/Connectwallet";
+import { InvestorTransection } from "./componets/investortransection";
 
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
