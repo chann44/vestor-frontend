@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     connect();
     if (isConnected) {
-      navigate("/home");
+      navigate("/select");
     }
   }, [isConnected]);
 
