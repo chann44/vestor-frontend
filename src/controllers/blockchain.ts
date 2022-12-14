@@ -3,7 +3,7 @@ import vestorfac from "../abi/vestorfac.json";
 import { BigNumber, ethers } from "ethers";
 import { erc20ABI } from "wagmi";
 
-const sum =  (
+const sum = (
   _numbers: number[],
   _vestingperiod: number,
   cliffperiod: number
@@ -32,7 +32,11 @@ export const approve = async (
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const signer = provider.getSigner();
 
-  const erc20approval = new ethers.Contract("0x32aA774e671aaf4926f312bCB9498A34b9f50768", erc20ABI, signer);
+  const erc20approval = new ethers.Contract(
+    "0x32aA774e671aaf4926f312bCB9498A34b9f50768",
+    erc20ABI,
+    signer
+  );
   const decimals = 18;
 
   for (let index = 0; index < inputarr.length; index++) {
@@ -92,17 +96,16 @@ export const vest = async (
     );
   }
 
-
-  console.log(investorsamount)
-  console.log(marketplaceContract)
+  console.log(investorsamount);
+  console.log(marketplaceContract);
 
   const res = marketplaceContract._clone(
     "0x2b2C71909164BaE81de0f95A51134E2dfaB07908",
-    "FuckYou",
-    "0x32aA774e671aaf4926f312bCB9498A34b9f50768",
+    tokenname,
+    token,
     investors,
     vesting,
-    [BigNumber.from('1')],
+    [BigNumber.from("1")],
     0,
     cliff
   );
@@ -110,7 +113,7 @@ export const vest = async (
 };
 
 export const datetounix = async (datestr: string) => {
-  console.log(datestr)
+  console.log(datestr);
   const date = new Date(datestr);
   const unixTimestamp = Math.floor(date.getTime() / 1000);
   console.log(unixTimestamp);
@@ -126,7 +129,7 @@ export const getdata = async () => {
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const provider = new ethers.providers.Web3Provider(window.ethereum as any);
   const accounts = await provider.listAccounts();
-  const add = "0xb4e912C0ED3B356af88Ee2587250875d4676Ca02" 
+  const add = "0xb4e912C0ED3B356af88Ee2587250875d4676Ca02";
 
   const signer = provider.getSigner();
   const marketplaceContract = new ethers.Contract(

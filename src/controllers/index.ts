@@ -22,6 +22,7 @@ export const getPortfolioBalance = async (chainID: number, Address: string) => {
   const res = await instance.get(
     `/${chainID}/address/${Address}/portfolio_v2/?key=${APIKEY}`
   );
+  console.log("useThis url here", res.config.url);
   console.log("historyPortfolio", res.data);
   return res.data;
 };

@@ -1,5 +1,19 @@
+import { useEffect, useState } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
+import { useClient } from "wagmi";
+import { getPortfolioBalance } from "../../controllers";
 export const BalanceCard = () => {
+  const [balance, setBalance] = useState();
+  const { data: cleintData } = useClient();
+  useEffect(() => {
+    (async () => {
+      const data = await getPortfolioBalance(
+        cleintData?.chain?.id,
+        cleintData?.account
+      );
+      console.log("balala,", data);
+    })();
+  }, []);
   return (
     <div className="bg-thirdDark mx-4 rounded-lg py-10 space-y-6 ">
       {/* ETh Balance card */}

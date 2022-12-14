@@ -10,8 +10,24 @@ interface another {
   value: string;
 }
 export const VestingDetails = () => {
-  const {optoins, setOptions, inputArr, tokenInfo, name,  setInputArr, vestingDate, setVestingDate, vestingPeriod, setVestingPeriod, onchangeInput, DelteINput, addAnotherChoice, clifPeriod, setCliffPeriod } = useVestingContext()
-  const {setShowModal} = useAppContext()
+  const {
+    optoins,
+    setOptions,
+    inputArr,
+    tokenInfo,
+    name,
+    setInputArr,
+    vestingDate,
+    setVestingDate,
+    vestingPeriod,
+    setVestingPeriod,
+    onchangeInput,
+    DelteINput,
+    addAnotherChoice,
+    clifPeriod,
+    setCliffPeriod,
+  } = useVestingContext();
+  const { setShowModal } = useAppContext();
   return (
     <div className="bg-primaryDark w-full  mx-auto rounded-xl p-8 space-y-6 ">
       <h1 className="text-xl">Enter Vesting Details</h1>
@@ -26,7 +42,7 @@ export const VestingDetails = () => {
                 type="text"
                 value={vestingPeriod}
                 onChange={(e) => {
-                    setVestingPeriod(e.target.value)
+                  setVestingPeriod(e.target.value);
                 }}
                 className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
                 placeholder="Enter The Vesting Period in Months"
@@ -42,7 +58,7 @@ export const VestingDetails = () => {
                 type="text"
                 value={clifPeriod}
                 onChange={(e) => {
-                    setCliffPeriod(e.target.value)
+                  setCliffPeriod(e.target.value);
                 }}
                 className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
                 placeholder="Enter The cliff Period in Months"
@@ -58,7 +74,7 @@ export const VestingDetails = () => {
                 type="date"
                 value={vestingDate}
                 onChange={(e) => {
-                    setVestingDate(e.target.value)
+                  setVestingDate(e.target.value);
                 }}
                 className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
                 placeholder="Enter The Vesting Period in Months"

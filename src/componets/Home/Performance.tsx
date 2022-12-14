@@ -10,15 +10,20 @@ export const PerformanceCard = () => {
   const { data: cleintData } = useClient();
   useEffect(() => {
     (async () => {
-      if (cleintData) {
-        const data =
-          cleintData?.chain?.id &&
-          cleintData?.account &&
-          (await getPortfolioBalance(
-            cleintData?.chain?.id,
-            cleintData?.account
-          ));
-        console.log("historyData", data);
+      console.log("runnig");
+      try {
+        if (cleintData) {
+          const data =
+            cleintData?.chain?.id &&
+            cleintData?.account &&
+            (await getPortfolioBalance(
+              cleintData?.chain?.id,
+              cleintData?.account
+            ));
+          console.log("historyData", data);
+        }
+      } catch (e) {
+        console.log(e);
       }
     })();
   }, [cleintData]);
