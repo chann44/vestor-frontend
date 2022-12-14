@@ -5,6 +5,7 @@ import {
   AiOutlineHistory,
   AiOutlineLogout,
   AiOutlineSecurityScan,
+  AiOutlineMore,
 } from "react-icons/ai";
 import { NavItem } from "./NavItem";
 
@@ -61,10 +62,10 @@ export const Navbar = () => {
       </div>
       <div className="py-12">
         <NavItem
-          link="/logout"
-          classes="text-red"
-          Icon={AiOutlineLogout}
-          title="logout"
+          link={"/"}
+          classes="text-text"
+          Icon={AiOutlineMore}
+          title={"Learn More"}
         />
       </div>
     </nav>
