@@ -1,11 +1,22 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAccount } from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 import { Button, Card } from "./Card";
+import { InjectedConnector } from "wagmi/connectors/injected";
 
 export const ObBoarding = () => {
-  const naviage = useNavigate();
+  const navigate = useNavigate();
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
   const { isConnected } = useAccount();
+
+  useEffect(() => {
+    connect();
+    if (isConnected) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="w-full   min-h-screen p-5 flex justify-around items-center content-center flex-wrap ">

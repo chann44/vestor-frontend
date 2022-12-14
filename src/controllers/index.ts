@@ -9,8 +9,8 @@ const instance = axios.create({
 });
 
 export const getWalletTranscations = async (
-  ChainId: number,
-  Address: string
+  ChainId: number | undefined,
+  Address: string | any
 ) => {
   const res = await instance.get(
     `/${ChainId}/address/${Address}/transactions_v2/?key=${APIKEY}`
@@ -18,7 +18,10 @@ export const getWalletTranscations = async (
   return res.data;
 };
 
-export const getPortfolioBalance = async (chainID: number, Address: string) => {
+export const getPortfolioBalance = async (
+  chainID: number | any,
+  Address: string | any
+) => {
   const res = await instance.get(
     `/${chainID}/address/${Address}/portfolio_v2/?key=${APIKEY}`
   );

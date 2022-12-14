@@ -9,18 +9,6 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 
 function App() {
   const navigate = useNavigate();
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  });
-  const { isConnected } = useAccount();
-
-  useEffect(() => {
-    connect();
-    if (isConnected) {
-      navigate("/select");
-    }
-  }, [isConnected]);
-
   return <ObBoarding />;
 }
 
