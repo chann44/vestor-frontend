@@ -68,6 +68,15 @@ export const TokenDetails = () => {
           </div>
           <div className="bg-secondaryDark w-full p-3  rounded-lg">
             <input
+              onChange={(e) => {
+                setTokenInfo((prev: any) => {
+                  return {
+                    ...prev,
+                    description: " fake descriotp ",
+                    contract_address: e.target.value,
+                  };
+                });
+              }}
               type="text"
               value={tokenInfo?.contract_address}
               className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
