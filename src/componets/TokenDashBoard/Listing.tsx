@@ -67,12 +67,12 @@ const AssetComponet = ({
           <p className="text-xs">12 months</p>
         </div>
         <div className="col-start-3 col-span-1 flex justify-center  ">
-          <p className="text-xs">{parseInt(ammount, 18)}</p>
+          <p className="text-xs">{ethers.utils.formatUnits(cliffamount, 18)}</p>
         </div>
         <div className="col-start-4 col-span-1  flex justify-center ">
           <div className="flex flex-col justify-center items-center">
             <p className="text-xs">
-              {new Date(parseInt(time, 18)).toDateString()}
+              {new Date(time.toString()).toDateString()}
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export const TokenListing = () => {
               ammount={token.amount._hex}
               name={token.name}
               cliffamount={token.cliffamount._hex}
-              time={token.time._hex}
+              time={token.time}
               tokenAddress={token.tokenaddress}
             />
           );

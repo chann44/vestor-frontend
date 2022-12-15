@@ -5,6 +5,8 @@ import { LineChart } from "../Charts/LineChar";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useState } from "react";
+import { claim } from "../../controllers/blockchain";
+import { ethers } from "ethers";
 
 const TravelDetailsView = ({ data }: { data: any }) => {
   const [chartData, setChartData] = useState<ApexOptions>({
@@ -91,7 +93,7 @@ export const TokenDetailDashBoard = () => {
                 <div>
                   <p className="text-lg text-white/70">tokens left to claim:</p>
                   <p className="text-xl">
-                    {parseInt(tokenInfo.cliffamount._hex)}
+                    {ethers.utils.formatUnits(tokenInfo.cliffamount,18)}
                   </p>
                 </div>
                 <div>
@@ -160,7 +162,7 @@ export const TokenDetailDashBoard = () => {
                 </div>
               </div>
               <div className="col-start-3 col-span-1 ">
-                <button className=" w-full text-sm py-2 bg-PrimaryBlue text-center rounded-full">
+                <button className=" w-full text-sm py-2 bg-PrimaryBlue text-center rounded-full" onClick={() =>{claim(tokenInfo.poolid)}}>
                   CLAIM
                 </button>
               </div>

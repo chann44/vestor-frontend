@@ -105,7 +105,7 @@ export const vest = async (
     token,
     investors,
     vesting,
-    [BigNumber.from("1")],
+    investorsamount,
     0,
     cliff
   );
@@ -129,7 +129,7 @@ export const getdata = async () => {
   const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
   const provider = new ethers.providers.Web3Provider(window.ethereum as any);
   const accounts = await provider.listAccounts();
-  const add = "0xb4e912C0ED3B356af88Ee2587250875d4676Ca02";
+  const add = accounts[0];
 
   const signer = provider.getSigner();
   const marketplaceContract = new ethers.Contract(
@@ -139,7 +139,7 @@ export const getdata = async () => {
   );
 
   const data = await marketplaceContract.fetchinvaddress(add);
-  for (let index = 1; index < data.length; index++) {
+  for (let index = 0; index < data.length; index++) {
     const faactory = new ethers.Contract(data[index], vestor, signer);
     const getnumber = await faactory.getamount(add, 0);
     console.log(getnumber);
@@ -155,3 +155,19 @@ export const getdata = async () => {
   }
   return peopleArray;
 };
+
+export const claim = async (_address : any) =>{
+  const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+  const accounts = await provider.listAccounts();
+  const add = accounts[0];
+
+
+  
+
+  const signer = provider.getSigner();
+  const marketplaceContract = new ethers.Contract(_address, vestor, signer)
+  const data = await marketplaceContract.claimtokens(0,add)
+  window.alert("transcation submited")
+
+    
+}
