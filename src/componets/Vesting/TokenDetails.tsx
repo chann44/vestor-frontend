@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AiOutlineBlock, AiOutlineCheck, AiOutlineRight } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
+import { useAppContext } from "../../context/AppContextProvider";
 import { useVestingContext } from "../../context/VestingConfext";
 import { GetCoinINFO, GetCoinINFOByID } from "../../controllers";
 
@@ -19,9 +20,28 @@ export interface TokenDetail {
   description: any;
 }
 
+const Addresses = [
+  {
+    id: 1,
+    name: "youo",
+    addr: "0xlwjqeorjweoj",
+  },
+  {
+    id: 2,
+    name: "youo",
+    addr: "0xlwjqeorjweoj",
+  },
+  {
+    id: 3,
+    name: "youo",
+    addr: "0xlwjqeorjweoj",
+  },
+];
+
 export const TokenDetails = () => {
   const { name, setTokenInfo, tokenInfo, setName } = useVestingContext();
   const [exist, setExist] = useState(false);
+  const { enabled } = useAppContext();
 
   useEffect(() => {
     (async () => {
@@ -49,22 +69,46 @@ export const TokenDetails = () => {
       <div className="space-y-6">
         <form action="" className="space-y-8">
           <div className="bg-secondaryDark flex items-center w-full p-3 rounded-lg ">
-            <input
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              type="text"
-              className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
-              placeholder="Enter Tokne Name"
-            />
-            {name ? (
-              exist ? (
-                <AiOutlineCheck className="text-green" />
-              ) : (
-                <AiOutlineBlock className="text-red" />
-              )
-            ) : null}
+            {enabled ? (
+              <select
+                onChange={(e) => {
+                  const addr = JSON.parse(e.target.value).addr;
+                  setTokenInfo((prev: any) => {
+                    return {
+                      ...prev,
+                      description: " fake descriotp ",
+                      contract_address: addr,
+                    };
+                  });
+                }}
+                className="w-full bg-transparent "
+              >
+                {Addresses.map((adr) => {
+                  return (
+                    <option value={JSON.stringify(adr)}>{adr.name}</option>
+                  );
+                })}
+              </select>
+            ) : (
+              <>
+                <input
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  type="text"
+                  className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
+                  placeholder="Enter Tokne Name"
+                />
+                {name ? (
+                  exist ? (
+                    <AiOutlineCheck className="text-green" />
+                  ) : (
+                    <AiOutlineBlock className="text-red" />
+                  )
+                ) : null}
+              </>
+            )}
           </div>
           <div className="bg-secondaryDark w-full p-3  rounded-lg">
             <input

@@ -21,7 +21,7 @@ export const BalanceCard = () => {
       {/* ETh Balance card */}
       <h1 className="text-2xl text-center">TOTAL BALANCE</h1>
       <h1 className="text-PrimaryBlue text-5xl font-bold text-center">
-        ${totalBalance}
+        ${totalBalance.toFixed(4)}
       </h1>
     </div>
   );

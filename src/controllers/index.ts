@@ -5,7 +5,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: baseURL,
-  timeout: 1000,
+  timeout: 6000,
 });
 
 export const getWalletTranscations = async (

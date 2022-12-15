@@ -88,7 +88,6 @@ export const Assets = () => {
   const [token, setTokens] = useState<IAssetInfo[] | null>(null);
   const { data: cleintData } = useClient();
   const { setTotalBalance } = useAppContext();
-  const {} = useAppContext();
   useEffect(() => {
     (async () => {
       if (cleintData) {
@@ -96,19 +95,19 @@ export const Assets = () => {
           cleintData?.chain?.id &&
           cleintData?.account &&
           (await getTokens(cleintData?.chain?.id, cleintData?.account));
-        console.log("data", data);
-        let b = 0;
-        data.data.items((item: any) => {
-          b = b + item.qoute;
+        let price: number = 0;
+        const res = data.data.items.map((item: any) => {
+          price = price + item.balance.toFixed();
         });
-        setTotalBalance(b);
-        console.log("yeh hai b aaiye", b);
+        console.log("blalaldlfjowjfowejof", price);
+        setTotalBalance(price);
         setTokens((prev: any) => {
-          return [...data.data.items];
+          return [...data?.data?.items];
         });
       }
     })();
   }, [cleintData]);
+
   return (
     <div className=" bg-primaryDark w-full p-5 rounded-xl">
       <AssetHead />

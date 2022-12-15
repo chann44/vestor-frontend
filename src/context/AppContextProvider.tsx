@@ -23,6 +23,8 @@ interface IContext {
   setRedirectLink: Dispatch<SetStateAction<string>>;
   totalBalance: number;
   setTotalBalance: Dispatch<SetStateAction<number>>;
+  enabled: boolean;
+  setEnabled: Dispatch<SetStateAction<boolean>>;
 }
 
 const context = createContext({} as IContext);
@@ -35,6 +37,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [redirectLink, setRedirectLink] = useState<string>("");
   const [totalBalance, setTotalBalance] = useState<number>(0);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
     try {
@@ -51,6 +54,8 @@ export const AppContextProvider = ({ children }: Props) => {
     setRedirectLink,
     totalBalance,
     setTotalBalance,
+    enabled,
+    setEnabled,
   };
   return (
     <>
