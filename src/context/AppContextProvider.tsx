@@ -18,9 +18,11 @@ interface Props {
 
 interface IContext {
   showModal: boolean;
-  setShowModal: Dispatch<SetStateAction<boolean>>
+  setShowModal: Dispatch<SetStateAction<boolean>>;
   redirectLink: string;
   setRedirectLink: Dispatch<SetStateAction<string>>;
+  totalBalance: number;
+  setTotalBalance: Dispatch<SetStateAction<number>>;
 }
 
 const context = createContext({} as IContext);
@@ -29,25 +31,26 @@ export const useAppContext = () => {
   return useContext(context);
 };
 
-
-
-
 export const AppContextProvider = ({ children }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [redirectLink, setRedirectLink] = useState<string>("");
-useEffect(() => {
-  try {
-    GetCoinINFO("0.5X Long Algorand")
-  }catch(e) {
-    console.log("we are fucked")
-  }
-}, [])
+  const [totalBalance, setTotalBalance] = useState<number>(0);
+
+  useEffect(() => {
+    try {
+      GetCoinINFO("0.5X Long Algorand");
+    } catch (e) {
+      console.log("we are fucked");
+    }
+  }, []);
 
   const shared_value = {
     showModal,
     setShowModal,
     redirectLink,
     setRedirectLink,
+    totalBalance,
+    setTotalBalance,
   };
   return (
     <>

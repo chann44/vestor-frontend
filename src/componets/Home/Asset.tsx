@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { AiFillProfile, AiOutlineUsb } from "react-icons/ai";
 import { useAccount, useClient } from "wagmi";
+import { useAppContext } from "../../context/AppContextProvider";
 import { getTokens } from "../../controllers";
 import { AssetScal } from "../sckelton/assetScale";
 
@@ -86,6 +87,8 @@ const AssetComponet = ({
 export const Assets = () => {
   const [token, setTokens] = useState<IAssetInfo[] | null>(null);
   const { data: cleintData } = useClient();
+  const { setTotalBalance } = useAppContext();
+  const {} = useAppContext();
   useEffect(() => {
     (async () => {
       if (cleintData) {
@@ -94,6 +97,12 @@ export const Assets = () => {
           cleintData?.account &&
           (await getTokens(cleintData?.chain?.id, cleintData?.account));
         console.log("data", data);
+        let b = 0;
+        data.data.items((item: any) => {
+          b = b + item.qoute;
+        });
+        setTotalBalance(b);
+        console.log("yeh hai b aaiye", b);
         setTokens((prev: any) => {
           return [...data.data.items];
         });
