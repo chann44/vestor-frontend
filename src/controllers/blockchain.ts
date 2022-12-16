@@ -59,7 +59,7 @@ export const approve = async (
     contract_address,
     ethers.utils.parseUnits(addwithfees, decimals)
   );
-  const receipt = provider.waitForTransaction(approval.hash, 1, 150000);
+  const receipt = await provider.waitForTransaction(approval.hash, 1, 150000);
   alert("approval success");
   setisaproved(true);
 };
@@ -150,6 +150,9 @@ export const getdata = async () => {
       name: getnumber.name,
       time: getnumber.time,
       cliffamount: getnumber.amount,
+      vestingperiod : getnumber.vestingperiod,
+      cliffperiod: getnumber.cliffperiod,
+      starttime:getnumber.startime
     };
     peopleArray.push(item);
   }
@@ -171,3 +174,87 @@ export const claim = async (_address : any) =>{
 
     
 }
+
+export const gettokenissuerdata = async () => {
+  let peopleArray = [];
+  const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
+  const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+  const accounts = await provider.listAccounts();
+  const add = accounts[0];
+
+  const signer = provider.getSigner();
+  const marketplaceContract = new ethers.Contract(
+    contract_address,
+    vestorfac,
+    signer
+  );
+
+  const data = await marketplaceContract.fetchaddress(add);
+  for (let index = 0; index < data.length; index++) {
+    const faactory = new ethers.Contract(data[index], vestor, signer);
+    const getnumber = await faactory.getContract(0);
+    const investors = await faactory.getnumber._investors[index]
+    console.log(getnumber);
+    let item = {
+      poolid: data[index],
+      amount: getnumber._TotalAmount,
+      tokenaddress: getnumber._tokencontractaddress,
+      vesting: getnumber._vestingPeriod,
+
+
+
+    };
+    peopleArray.push(item);
+  }
+  return peopleArray;
+};
+
+
+export const getinvestor = async () => {
+
+  let investor= []
+  const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
+  const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+  const accounts = await provider.listAccounts();
+  const add = accounts[0];
+
+  const signer = provider.getSigner();
+  const marketplaceContract = new ethers.Contract(
+    contract_address,
+    vestorfac,
+    signer
+  );
+
+  const data = await marketplaceContract.fetchaddress(add);
+  for (let index = 0; index < data.length; index++) {
+    const faactory = new ethers.Contract(data[index], vestor, signer);
+    const getnumber = await faactory.getContract(0);
+    const investors = await faactory.getnumber._investors[index]
+    console.log(getnumber);
+    investor.push(investors);
+  }
+  return investor;
+};
+
+
+export const getapprovaldata = async (amount: number,tokenAddress: string | any ) => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+  const contract_address = "0x7EDbf8a624E9224ADC5a438739B0Ed525E503734";
+  const signer = provider.getSigner();
+  const accounts = await provider.listAccounts();
+  const add = accounts[0];
+
+  const erc20approvalcheck = new ethers.Contract(
+    tokenAddress,
+    erc20ABI,
+    signer
+  );
+  const approval = erc20approvalcheck.allowance(add,contract_address)
+  if(approval >= amount){
+    return true
+  }
+  else{
+    return false
+  }
+
+};
