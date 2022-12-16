@@ -170,6 +170,7 @@ export const claim = async (_address : any) =>{
   const signer = provider.getSigner();
   const marketplaceContract = new ethers.Contract(_address, vestor, signer)
   const data = await marketplaceContract.claimtokens(0,add)
+  const receipt = await provider.waitForTransaction(data.hash, 1, 150000);
   window.alert("transcation submited")
 
     
