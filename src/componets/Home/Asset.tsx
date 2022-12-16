@@ -97,7 +97,12 @@ export const Assets = () => {
           (await getTokens(cleintData?.chain?.id, cleintData?.account));
         let price: number = 0;
         const res = data.data.items.map((item: any) => {
-          price = price + item.balance.toFixed();
+          console.log(
+            "blance of token",
+            item.quote_rate,
+            ethers.utils.formatUnits(item.balance, 18)
+          );
+          price = price + item?.quote_rate;
         });
         console.log("blalaldlfjowjfowejof", price);
         setTotalBalance(price);

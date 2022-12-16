@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { useClient } from "wagmi";
@@ -54,7 +55,7 @@ export const Transections = () => {
         return (
           <Transection
             key={item}
-            ammount={item?.value}
+            ammount={ethers.utils.formatEther(item?.value)}
             from_address={item.from_address}
             to_address={item?.to_address}
             time={item?.block_signed_at}

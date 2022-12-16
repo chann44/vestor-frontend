@@ -13,7 +13,7 @@ export const NavItem = ({ Icon, title, classes, link }: Props) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.startsWith(link) && title !== "Learn More") {
+    if (location.pathname.startsWith(link) && title !== "Features") {
       console.log(location.pathname, link);
       setActive(true);
     }
