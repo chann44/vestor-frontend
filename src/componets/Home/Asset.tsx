@@ -99,10 +99,10 @@ export const Assets = () => {
         const res = data.data.items.map((item: any) => {
           console.log(
             "blance of token",
-            item.quote_rate,
+            item.quote,
             ethers.utils.formatUnits(item.balance, 18)
           );
-          price = price + item?.quote_rate;
+          price = price + item?.quote;
         });
         console.log("blalaldlfjowjfowejof", price);
         setTotalBalance(price);
