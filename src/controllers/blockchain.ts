@@ -33,7 +33,7 @@ export const approve = async (
   const signer = provider.getSigner();
 
   const erc20approval = new ethers.Contract(
-    "0x32aA774e671aaf4926f312bCB9498A34b9f50768",
+    tokenAddress,
     erc20ABI,
     signer
   );
@@ -100,7 +100,7 @@ export const vest = async (
   console.log(marketplaceContract);
 
   const res = marketplaceContract._clone(
-    "0x2b2C71909164BaE81de0f95A51134E2dfaB07908",
+    "0xaeBb3FEF6DC045Dd142260DF768bD427400a261E",
     tokenname,
     token,
     investors,
