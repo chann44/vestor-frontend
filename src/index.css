@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body, html {
-    margin: 0;
-    padding: 0;
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

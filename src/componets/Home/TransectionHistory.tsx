@@ -50,7 +50,7 @@ export const Transections = () => {
 
   // Example address request
   return (
-    <div className="min-h-[400px] bg-primaryDark max-h-[400px] overflow-y-scroll py-6 px-3">
+    <div className="no-scrollbar min-h-[400px] bg-primaryDark max-h-[400px] overflow-y-scroll py-6 px-3">
       {txs?.map((item: any) => {
         return (
           <Transection
