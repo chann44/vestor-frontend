@@ -150,9 +150,6 @@ export const getdata = async () => {
       name: getnumber.name,
       time: getnumber.time,
       cliffamount: getnumber.amount,
-      vestingperiod : getnumber.vestingperiod,
-      cliffperiod: getnumber.cliffperiod,
-      starttime:getnumber.startime
     };
     peopleArray.push(item);
   }

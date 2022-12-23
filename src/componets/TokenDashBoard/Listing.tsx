@@ -72,7 +72,7 @@ const AssetComponet = ({
         <div className="col-start-4 col-span-1  flex justify-center ">
           <div className="flex flex-col justify-center items-center">
             <p className="text-xs">
-              {new Date(time.toString()).toDateString()}
+         invalid Date
             </p>
           </div>
         </div>
