@@ -49,7 +49,7 @@ export const PerformanceCard = () => {
           <div>
             <div
               className={
-                " w-12 h-12 bg-faddedBlue flex justify-center items-center rounded-xl group-hover:bg-faddedBlue "
+                " transition transform duration-200 w-12 h-12 bg-faddedBlue flex justify-center items-center rounded-xl group-hover:bg-faddedBlue active:scale-95 cursor-pointer"
               }
             >
               <BsArrowRight size={20} className="text-purple" />

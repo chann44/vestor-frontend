@@ -108,7 +108,7 @@ export const VestingDetails = () => {
                 </div>
                 <div className="col-start-13">
                   <div
-                    className="bg-red w-10 h-10 flex items-center justify-center rounded-full cursor-pointer"
+                    className="bg-red active:scale-95 transition transform duration-200 ease-out w-10 h-10 flex items-center justify-center rounded-full cursor-pointer"
                     onClick={() => {
                       DelteINput(index);
                     }}
@@ -121,7 +121,7 @@ export const VestingDetails = () => {
           })}
           <div className="col-start-1 col-span-12 xl:col-start-7 xl:col-span-6 grid grid-cols-6 gap-4">
             <button
-              className="bg-PrimaryBlue py-2 col-start-1 col-span-3 rounded-lg"
+              className=" active:scale-95 transition transform duration-200 ease-out bg-PrimaryBlue py-2 col-start-1 col-span-3 rounded-lg"
               onClick={() => {
                 addAnotherChoice();
               }}
@@ -129,7 +129,7 @@ export const VestingDetails = () => {
               +Add Another
             </button>
             <button
-              className="bg-PrimaryBlue py-2 col-start-4 col-span-3 rounded-lg"
+              className="active:scale-95 transition transform duration-200 ease-out bg-PrimaryBlue py-2 col-start-4 col-span-3 rounded-lg"
               onClick={(e) => {
                 e.stopPropagation();
                 setShowModal(true);

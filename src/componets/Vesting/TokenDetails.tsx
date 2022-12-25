@@ -23,18 +23,13 @@ export interface TokenDetail {
 const Addresses = [
   {
     id: 1,
-    name: "youo",
-    addr: "0xlwjqeorjweoj",
+    name: "erc 20",
+    addr: "0xA6bE28977d3Ab88c21942D597a20b8Fa939339F2",
   },
   {
-    id: 2,
-    name: "youo",
-    addr: "0xlwjqeorjweoj",
-  },
-  {
-    id: 3,
-    name: "youo",
-    addr: "0xlwjqeorjweoj",
+    id: 1,
+    name: "erc 0",
+    addr: "0xA6bE28977d32",
   },
 ];
 
@@ -63,6 +58,12 @@ export const TokenDetails = () => {
     })();
   }, [name]);
 
+  useEffect(() => {
+    if (enabled) {
+      setTokenInfo(() => Addresses[0] as any);
+    }
+  }, []);
+
   return (
     <div className="bg-primaryDark w-full xl:min-w-[700px]  mx-auto rounded-xl p-8 space-y-6 ">
       <h1 className="text-xl">Enter Token Details</h1>
@@ -83,11 +84,16 @@ export const TokenDetails = () => {
                 }}
                 className="w-full bg-transparent "
               >
-                {Addresses.map((adr) => {
-                  return (
-                    <option value={JSON.stringify(adr)}>{adr.name}</option>
-                  );
-                })}
+                <>
+                  <option value={"select token"} disabled selected>
+                    select token
+                  </option>
+                  {Addresses.map((adr, index) => {
+                    return (
+                      <option value={JSON.stringify(adr)}>{adr.name}</option>
+                    );
+                  })}
+                </>
               </select>
             ) : (
               <>

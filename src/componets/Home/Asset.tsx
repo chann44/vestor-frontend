@@ -50,15 +50,14 @@ const AssetComponet = ({
   quote_rate,
 }: IAssetInfo) => {
   return (
-    <div className="grid grid-cols-5 p-5 bg-secondaryDark items-center rounded-x my-2">
-      <div className="col-start-1 col-span-1 grid grid-cols-2 ">
-        <div className="w-full flex items-center space-x-4">
+    <div className="grid grid-cols-5 p-3 bg-secondaryDark items-center rounded-lg my-2">
+      <div className="col-start-1 col-span-1 grid grid-cols-2  ">
+        <div className="w-full flex items-center justify-between col-span-2 ">
           <div className="rounded-full w-8 h-8">
             <img src={logo_url} className="rounded-full object-cover" />
           </div>
-          <div>
-            <p>{contract_name}</p>
-            {/* <p className="text-xs text-text-faded">PRONTLINE.com</p> */}
+          <div className="grow  border-green">
+            <p className="w-full">{contract_name}</p>
           </div>
         </div>
       </div>
@@ -133,7 +132,12 @@ export const Assets = () => {
           );
         })
       ) : (
-        <AssetScal />
+        <>
+          <AssetScal />
+          <AssetScal />
+          <AssetScal />
+          <AssetScal />
+        </>
       )}
     </div>
   );

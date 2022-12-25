@@ -161,9 +161,6 @@ export const claim = async (_address : any) =>{
   const accounts = await provider.listAccounts();
   const add = accounts[0];
 
-
-  
-
   const signer = provider.getSigner();
   const marketplaceContract = new ethers.Contract(_address, vestor, signer)
   const data = await marketplaceContract.claimtokens(0,add)
@@ -198,9 +195,6 @@ export const gettokenissuerdata = async () => {
       amount: getnumber._TotalAmount,
       tokenaddress: getnumber._tokencontractaddress,
       vesting: getnumber._vestingPeriod,
-
-
-
     };
     peopleArray.push(item);
   }
@@ -254,5 +248,4 @@ export const getapprovaldata = async (amount: number,tokenAddress: string | any 
   else{
     return false
   }
-
 };

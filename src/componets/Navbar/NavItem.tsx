@@ -19,7 +19,10 @@ export const NavItem = ({ Icon, title, classes, link }: Props) => {
     }
   }, [location, link]);
   return (
-    <Link to={link}>
+    <Link
+      to={link}
+      className=" duration-200 ease-out w-full active:bg-faddedBlue transition transform active:scale-95"
+    >
       <div
         className={
           "flex flex-col justify-center hover:border-r border-purple   space-y-4 group " +

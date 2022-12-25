@@ -48,7 +48,7 @@ const ModalITem = () => {
         </div>
         <div className="flex space-x-4  items-center mt-12 ">
           <button
-            className="bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 font-extrabold w-full"
+            className="active:scale-95 transition transform duration-200 ease-out bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 font-extrabold w-full"
             onClick={() => {
               approve(
                 tokenInfo?.contract_address,
@@ -74,7 +74,7 @@ const ModalITem = () => {
             }}
             disabled={!isAproved}
             className={
-              "bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 w-full font-extrabold flex items-center justify-center space-x-3 " +
+              "active:scale-95 transition transform duration-200 ease-out bg-PrimaryBlue rounded-lg text-text text-lg py-2 px-6 w-full font-extrabold flex items-center justify-center space-x-3 " +
               (!isAproved ? " bg-PrimaryBlue/30 cursor-not-allowed " : " ")
             }
           >

@@ -33,6 +33,22 @@ const Transection = ({ ammount, time }: TxProps) => {
     </div>
   );
 };
+const TransectionScalton = () => {
+  return (
+    <div className="flex justify-between rounded-xl  items-center  border-b-[#A0A0A033]/20  p-3 bg-secondaryDark ">
+      <div className="flex space-x-3 ">
+        <div
+          className={
+            " animate-pulse w-10 h-10 bg-primaryDark flex justify-center items-center rounded-xl group-hover:bg-faddedBlue "
+          }
+        ></div>
+        <div className="w-40 p-3 animate-pulse bg-primaryDark rounded-lg ">
+          <p className="text-xs text-text-faded"></p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Transections = () => {
   const { data: cleintData } = useClient();
@@ -51,17 +67,28 @@ export const Transections = () => {
   // Example address request
   return (
     <div className="no-scrollbar min-h-[400px] bg-primaryDark max-h-[400px] overflow-y-scroll py-6 px-3">
-      {txs?.map((item: any) => {
-        return (
-          <Transection
-            key={item}
-            ammount={ethers.utils.formatEther(item?.value)}
-            from_address={item.from_address}
-            to_address={item?.to_address}
-            time={item?.block_signed_at}
-          />
-        );
-      })}
+      {txs.length > 0 ? (
+        txs?.map((item: any) => {
+          return (
+            <Transection
+              key={item}
+              ammount={ethers.utils.formatEther(item?.value)}
+              from_address={item.from_address}
+              to_address={item?.to_address}
+              time={item?.block_signed_at}
+            />
+          );
+        })
+      ) : (
+        <>
+          <div className="space-y-3">
+            <TransectionScalton />
+            <TransectionScalton />
+            <TransectionScalton />
+            <TransectionScalton />
+          </div>
+        </>
+      )}
     </div>
   );
 };
