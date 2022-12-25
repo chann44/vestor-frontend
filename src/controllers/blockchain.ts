@@ -2,6 +2,7 @@ import vestor from "../abi/vestor.json";
 import vestorfac from "../abi/vestorfac.json";
 import { BigNumber, ethers } from "ethers";
 import { erc20ABI } from "wagmi";
+import erc20 from "../abi/erc.json"
 
 const sum = (
   _numbers: number[],
@@ -248,4 +249,29 @@ export const getapprovaldata = async (amount: number,tokenAddress: string | any 
   else{
     return false
   }
+};
+
+
+
+export const mintfaucettokens = async (amount: number,tokenAddress: string | any ) => {
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+  const contract_address = "0xA6bE28977d3Ab88c21942D597a20b8Fa939339F2";
+  const signer = provider.getSigner();
+  let decimals = 18;
+  const accounts = await provider.listAccounts();
+  const add = accounts[0];
+  const marketplaceContract = new ethers.Contract(
+    contract_address,
+    erc20,
+    signer
+  );
+
+  const res = marketplaceContract.mint(
+    add,
+    ethers.utils.parseUnits("1000", decimals)
+  );
+  console.log(res)
+  alert("transcation submited");
+
 };

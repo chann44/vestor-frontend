@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
+import { useAccount } from "wagmi";
 import { Layout } from "../componets/Layout";
 import { MOdal } from "../componets/Vesting/MOdal";
 import { useAppContext } from "../context/AppContextProvider";
 import { VestingContextProvider } from "../context/VestingConfext";
+import { mintfaucettokens } from "../controllers/blockchain";
 
 export default function Toggle() {
   const { enabled, setEnabled } = useAppContext();
+  const { address } = useAccount();
   return (
     <div className="relative flex flex-col items-center justify-center  overflow-hidden">
       <div className="flex">
@@ -18,6 +21,7 @@ export default function Toggle() {
           />
           <div
             onClick={() => {
+              mintfaucettokens(1, address);
               setEnabled(!enabled);
             }}
             className="w-11 h-6 bg-PrimaryBlue rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-PrimaryBlue after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
