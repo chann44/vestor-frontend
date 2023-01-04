@@ -110,7 +110,8 @@ export const vest = async (
     0,
     cliff
   );
-  alert("transcation submited");
+  const receipt = await provider.waitForTransaction(res.hash, 1, 150000);
+  alert("transcation submitted")
 };
 
 export const datetounix = async (datestr: string) => {
@@ -140,10 +141,13 @@ export const getdata = async () => {
   );
 
   const data = await marketplaceContract.fetchinvaddress(add);
+  console.log(data)
   for (let index = 0; index < data.length; index++) {
     const faactory = new ethers.Contract(data[index], vestor, signer);
-    const getnumber = await faactory.getamount(add, 0);
-    console.log(getnumber);
+    console.log(faactory)
+    const getnumber = await faactory.getamount(add,0);
+   const code= provider.getCode(faactory)
+    console.log("this is the number",getnumber);
     let item = {
       poolid: data[index],
       amount: getnumber.totalamount,
