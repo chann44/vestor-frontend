@@ -146,7 +146,6 @@ export const getdata = async () => {
     const faactory = new ethers.Contract(data[index], vestor, signer);
     console.log(faactory)
     const getnumber = await faactory.getamount(add,0);
-   const code= provider.getCode(faactory)
     console.log("this is the number",getnumber);
     let item = {
       poolid: data[index],
