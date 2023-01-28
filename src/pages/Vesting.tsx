@@ -19,18 +19,13 @@ export default function Toggle() {
             checked={enabled}
             readOnly
           />
-          <div
-            onClick={() => {
-              mintfaucettokens(1, address);
-              setEnabled(!enabled);
-            }}
-            className="w-11 h-6 bg-PrimaryBlue rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-PrimaryBlue after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-          ></div>
-          <span className="ml-2  font-medium text-white text-xl ">
-            Testnet {enabled ? "ON" : "OFF"}
-          </span>
+         
+          
         </label>
       </div>
+      <button onClick={() => {
+              mintfaucettokens(1000, address);
+            }}className="ml-2 bg-PrimaryBlue rounded p-2 font-medium text-white text-xl">mint test tokens</button>
     </div>
   );
 }

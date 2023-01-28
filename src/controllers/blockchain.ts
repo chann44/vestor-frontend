@@ -246,6 +246,7 @@ export const getapprovaldata = async (amount: number,tokenAddress: string | any 
     signer
   );
   const approval = erc20approvalcheck.allowance(add,contract_address)
+  console.log(approval)
   if(approval >= amount){
     return true
   }

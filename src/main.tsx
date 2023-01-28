@@ -28,10 +28,6 @@ const router = createBrowserRouter([
     element: <Select />,
   },
   {
-    path: "/connect",
-    element: <ConnectWallet />,
-  },
-  {
     path: "/home",
     element: <Home />,
   },
@@ -69,77 +65,71 @@ const router = createBrowserRouter([
   },
 ]);
 
-import {
-  WagmiConfig,
-  createClient,
-  defaultChains,
-  configureChains,
-} from "wagmi";
 
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
 
-import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { Select } from "./componets/OnBoarding/Select";
 import { ConnectWallet } from "./componets/OnBoarding/Connectwallet";
 import { InvestorTransection } from "./componets/investortransection";
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+  darkTheme,
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import { configureChains, createClient, useSwitchNetwork, WagmiConfig } from 'wagmi';
+import { mainnet, polygon, optimism, arbitrum, polygonMumbai } from 'wagmi/chains';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
 
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
-const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
-  alchemyProvider({ apiKey: "yourAlchemyApiKey" }),
-  publicProvider(),
-]);
 
 // Set up client
-const client = createClient({
-  autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: "wagmi",
-      },
-    }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        qrcode: true,
-      },
-    }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: "Injected",
-        shimDisconnect: true,
-      },
-    }),
-  ],
-  provider,
-  webSocketProvider,
+const { chains, provider } = configureChains(
+  [polygonMumbai],
+  [
+    publicProvider()
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  chains
 });
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider
+})
+
+
 
 // change max w to a fixed value later
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <WagmiConfig client={client}>
+        <WagmiConfig client={wagmiClient} >
+      <RainbowKitProvider chains={chains} modalSize="compact" coolMode initialChain={polygonMumbai} theme={darkTheme()}  >
       <AppContextProvider>
         <div
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+         onClick={(e) => {
+           e.stopPropagation();
+         }}
+          
           className="bg-primaryDark text-white"
         >
+          
           <div className="bg-primaryDark min-h-screen max-w-full    mx-auto">
             <RouterProvider router={router} />
           </div>
         </div>
       </AppContextProvider>
+      </RainbowKitProvider>
     </WagmiConfig>
   </React.StrictMode>
 );

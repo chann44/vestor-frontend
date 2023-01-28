@@ -3,8 +3,8 @@ import { HiLightBulb } from "react-icons/hi";
 import { FaGasPump } from "react-icons/fa";
 import { useAppContext } from "../../context/AppContextProvider";
 import { useVestingContext } from "../../context/VestingConfext";
-import { useState } from "react";
-import { approve, vest } from "../../controllers/blockchain";
+import { useState, useEffect } from "react";
+import { approve, getapprovaldata, vest } from "../../controllers/blockchain";
 
 const MOdalpoints: string[] = [
   "Approve the Transction for 15000  Of Fitmint Tokens.",
@@ -31,6 +31,11 @@ const ModalITem = () => {
     setCliffPeriod,
   } = useVestingContext();
   const [isAproved, setIsaproved] = useState(false);
+  useEffect(() => {
+   if (!getapprovaldata) {
+    setIsaproved(true)
+   }
+  }, []);
   return (
     <>
       <div className="w-full pt-12">
@@ -58,9 +63,11 @@ const ModalITem = () => {
                 setIsaproved
               );
             }}
+            disabled={isAproved}
           >
             Approve
           </button>
+
           <button
             onClick={() => {
               vest(

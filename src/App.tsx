@@ -4,11 +4,16 @@ import { Layout } from "./componets/Layout";
 import { ConnectWallet } from "./componets/OnBoarding/Connectwallet";
 
 import { ObBoarding } from "./componets/OnBoarding/";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useConnect, useSwitchNetwork } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
+
+
 
 function App() {
   const navigate = useNavigate();
+  const network = useSwitchNetwork({
+    chainId: 80001,
+  })
   return <ObBoarding />;
 }
 

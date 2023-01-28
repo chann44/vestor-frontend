@@ -8,7 +8,7 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <div className="w-full lg:grid grid-cols-12 iiiiiimmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmllmlmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm mm">
+    <div className="w-full lg:grid grid-cols-12 ">
       <div className="min-h-screen col-start-1 col-span-2 xl:flex justify-center w-full  p-5  hidden">
         <Navbar />
       </div>

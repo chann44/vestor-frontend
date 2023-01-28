@@ -70,32 +70,7 @@ export const TokenDetails = () => {
       <div className="space-y-6">
         <form action="" className="space-y-8">
           <div className="bg-secondaryDark flex items-center w-full p-3 rounded-lg ">
-            {enabled ? (
-              <select
-                onChange={(e) => {
-                  const addr = JSON.parse(e.target.value).addr;
-                  setTokenInfo((prev: any) => {
-                    return {
-                      ...prev,
-                      description: " fake descriotp ",
-                      contract_address: addr,
-                    };
-                  });
-                }}
-                className="w-full bg-transparent "
-              >
-                <>
-                  <option value={"select token"} disabled selected>
-                    select token
-                  </option>
-                  {Addresses.map((adr, index) => {
-                    return (
-                      <option value={JSON.stringify(adr)}>{adr.name}</option>
-                    );
-                  })}
-                </>
-              </select>
-            ) : (
+             (
               <>
                 <input
                   value={name}
@@ -114,7 +89,7 @@ export const TokenDetails = () => {
                   )
                 ) : null}
               </>
-            )}
+            )
           </div>
           <div className="bg-secondaryDark w-full p-3  rounded-lg">
             <input

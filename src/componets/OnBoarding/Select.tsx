@@ -6,9 +6,9 @@ export const Select = () => {
     <div className="flex justify-center space-x-10 min-h-screen items-center">
         <Card title="TOKEN ISSUER" text="lock your tokens and make your linear and dynamic vesting shedules for your investors for your token
 
-"  link={"/connect"} redirectLink={'/vesting'} />
+"  link={"/vesting"} redirectLink={'/vesting'} />
         <Card title="INVESTOR" text="Check your vested tokens health data and claim your vested tokens in a hassle free manner.
-"  link={"/connect"} redirectLink={"/tokendashboard"}/>
+"  link={"/tokendashboard"} redirectLink={"/tokendashboard"}/>
     </div>
     )
 }
