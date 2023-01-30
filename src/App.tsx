@@ -11,9 +11,6 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 
 function App() {
   const navigate = useNavigate();
-  const network = useSwitchNetwork({
-    chainId: 80001,
-  })
   return <ObBoarding />;
 }
 
