@@ -79,7 +79,7 @@ export const TokenDetails = () => {
                   }}
                   type="text"
                   className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
-                  placeholder="Enter Tokne Name"
+                  placeholder="Enter Token Name"
                 />
                 {name ? (
                   exist ? (
@@ -105,7 +105,7 @@ export const TokenDetails = () => {
               type="text"
               value={tokenInfo?.contract_address}
               className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
-              placeholder="Enter Tokne Contract Address"
+              placeholder="Enter Token Contract Address"
             />
           </div>
           <div className="bg-secondaryDark w-full p-3 rounded-lg">
@@ -113,7 +113,7 @@ export const TokenDetails = () => {
               rows={5}
               value={tokenInfo?.description.en}
               className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
-              placeholder="Enter Tokne Description"
+              placeholder="Enter Token Description"
             />
           </div>
         </form>
