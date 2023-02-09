@@ -80,6 +80,7 @@ export const TokenDetails = () => {
                   type="text"
                   className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
                   placeholder="Enter Token Name as Listed On Coingecko(Case-Sensitve)"
+                  required
                 />
                 {name ? (
                   exist ? (
@@ -91,7 +92,7 @@ export const TokenDetails = () => {
               </>
 
           </div>
-          <div className="bg-secondaryDark w-full p-3  rounded-lg">
+          <div className="bg-secondaryDark w-full p-3 rounded-lg">
             <input
               onChange={(e) => {
                 setTokenInfo((prev: any) => {
@@ -106,6 +107,7 @@ export const TokenDetails = () => {
               value={tokenInfo?.contract_address}
               className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
               placeholder="Enter Token Contract Address"
+              required
             />
           </div>
           <div className="bg-secondaryDark w-full p-3 rounded-lg">

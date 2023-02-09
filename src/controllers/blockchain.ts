@@ -279,3 +279,17 @@ export const mintfaucettokens = async (amount: number,tokenAddress: string | any
   alert("transcation submited");
 
 };
+
+export const getwallets = async()=>{
+  const wallets: any[] = []
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  provider.listAccounts().then((accounts: any[]) => {
+
+
+    for (let index = 0; index < accounts.length; index++) {
+      wallets.push(accounts[1])
+    }
+    console.log(wallets)
+});
+return wallets;
+}

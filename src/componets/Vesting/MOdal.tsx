@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { approve, getapprovaldata, vest } from "../../controllers/blockchain";
 
 const MOdalpoints: string[] = [
-  "Approve the Transction for 15000  Of Fitmint Tokens.",
+  "Approve the Transction ",
   "Confirm The Transcation to Vest The Tokens.",
   "Transcation Done :)",
 ];

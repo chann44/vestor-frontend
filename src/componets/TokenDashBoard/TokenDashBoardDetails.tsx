@@ -156,7 +156,8 @@ export const TokenDetailDashBoard = () => {
               <div className="col-start-1 col-span-2">
                 <div className="rounded-lg flex w-full bg-thirdDark items-center justify-between px-6 py-2">
                   <p className="text-sm">
-                    Vesting Contract Adress: {tokenInfo.poolid.slice(0, 20)}...{" "}
+                    Vesting Contract Adress: <a href={"https://mumbai.polygonscan.com/address/" + tokenInfo.poolid}>{tokenInfo.poolid.slice(0, 20)}...{" "}</a>
+
                   </p>
                   <AiOutlineLogout className="text-sm -rotate-45" />
                 </div>

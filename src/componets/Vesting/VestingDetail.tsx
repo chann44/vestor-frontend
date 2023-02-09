@@ -35,39 +35,7 @@ export const VestingDetails = () => {
         <div className="grid grid-cols col-start-1 gap-2 col-span-12">
           <div className="rounded-lg col-start-1 col-span-4 ">
             <label htmlFor="" className="text-sm text-text-faded">
-              vesting period
-            </label>
-            <div className=" bg-secondaryDark w-full p-3 ">
-              <input
-                type="text"
-                value={vestingPeriod}
-                onChange={(e) => {
-                  setVestingPeriod(e.target.value);
-                }}
-                className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
-                placeholder="Enter The Vesting Period in Months"
-              />
-            </div>
-          </div>
-          <div className="rounded-lg col-start-5 col-span-4 ">
-            <label htmlFor="" className="text-text-faded text-sm">
-              clif period
-            </label>
-            <div className=" bg-secondaryDark w-full p-3 ">
-              <input
-                type="text"
-                value={clifPeriod}
-                onChange={(e) => {
-                  setCliffPeriod(e.target.value);
-                }}
-                className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
-                placeholder="Enter The cliff Period in Months"
-              />
-            </div>
-          </div>
-          <div className="rounded-lg col-start-9 col-span-4 ">
-            <label htmlFor="vestdate" className="text-text-faded text-sm">
-              vesting date{" "}
+              start date
             </label>
             <div className=" bg-secondaryDark w-full p-3 ">
               <input
@@ -80,11 +48,48 @@ export const VestingDetails = () => {
                 placeholder="Enter The Vesting Period in Months"
               />
             </div>
+            
+          </div>
+          <div className="rounded-lg col-start-5 col-span-4 ">
+            <label htmlFor="" className="text-text-faded text-sm">
+              Vesting period
+            </label>
+            <div className=" bg-secondaryDark w-full p-3 ">
+              <input
+                type="text"
+                value={vestingPeriod}
+                onChange={(e) => {
+                  setVestingPeriod(e.target.value);
+                }}
+                className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
+                placeholder="Enter The Vesting Period in Months"
+              />
+            </div>
+            
+          </div>
+          <div className="rounded-lg col-start-9 col-span-4 ">
+            <label htmlFor="vestdate" className="text-text-faded text-sm">
+             Cliff Period
+            </label>
+            <div className=" bg-secondaryDark w-full p-3 ">
+              <input
+                type="text"
+                value={clifPeriod}
+                onChange={(e) => {
+                  setCliffPeriod(e.target.value);
+                }}
+                className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
+                placeholder="Enter The cliff Period in Months"
+              />
+            </div>
+            
+            
           </div>
         </div>
         <div className="grid grid-cols-12 col-start-1 col-span-12 space-y-10">
           {inputArr.map((item: any, index: number) => {
             return (
+              
               <div className="grid grid-cols-13 col-start-1 col-span-12 gap-4 items-center">
                 <div className="bg-secondaryDark w-full p-3 rounded-lg col-start-1 col-span-6 ">
                   <input
@@ -96,14 +101,16 @@ export const VestingDetails = () => {
                     placeholder="Enter The Investor Address "
                   />
                 </div>
+                
                 <div className="bg-secondaryDark w-full p-3 rounded-lg col-start-7 col-span-6 ">
+                
                   <input
                     onChange={(e) => {
                       onchangeInput(e, index, "ammount");
                     }}
                     type="text"
                     className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded placeholder:text-sm text-sm"
-                    placeholder="Enter The Investor Amount Per Cliff Period"
+                    placeholder="Enter The total Investor Amount  "
                   />
                 </div>
                 <div className="col-start-13">

@@ -9,28 +9,30 @@ interface TxProps {
   to_address: string;
   from_address: string;
   ammount: string;
+  txaddress:string
+
 }
 
-const Transection = ({ ammount, time }: TxProps) => {
+const Transection = ({ ammount, time,txaddress }: TxProps) => {
   return (
-    <div className="flex justify-between  items-center border-b border-b-[#A0A0A033]/20  py-3 ">
+    <><div className="flex justify-between  items-center border-b border-b-[#A0A0A033]/20  py-3 ">
       <div className="flex space-x-3 ">
         <div
-          className={
-            " w-10 h-10 bg-faddedBlue flex justify-center items-center rounded-xl group-hover:bg-faddedBlue "
-          }
+          className={" w-10 h-10 bg-faddedBlue flex justify-center items-center rounded-xl group-hover:bg-faddedBlue "}
         >
           <BsArrowRight size={16} className="text-purple -rotate-45" />
         </div>
         <div>
-          <p>Transfred</p>
-          <p className="text-xs text-text-faded">
-            {new Date(time).toDateString().toString()}
-          </p>
-        </div>
+        <a href={"https://mumbai.polygonscan.com/tx/" + txaddress}>
+      transcation
+    </a>
+        <p className="text-xs text-text-faded">
+          {new Date(time).toDateString().toString()}
+        </p>
       </div>
-      <p>{ammount}ETH</p>
+    </div><p>{ammount}ETH</p>
     </div>
+    </>
   );
 };
 const TransectionScalton = () => {
@@ -76,6 +78,8 @@ export const Transections = () => {
               from_address={item.from_address}
               to_address={item?.to_address}
               time={item?.block_signed_at}
+              txaddress ={item?.tx_hash}
+             
             />
           );
         })

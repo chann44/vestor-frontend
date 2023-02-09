@@ -19,7 +19,7 @@ interface IAssetInfo {
 
 export const AssetHead = () => {
   return (
-    <div className="grid grid-cols-5 p-5">
+    <div className="grid  p-5">
       <div className="col-start-1 col-span-1 grid grid-cols-2 ">
         <div className=" col-start-1 col-span-1 flex justify-center items-center">
           <p className="text-sm text-text-faded">ASSET</p>

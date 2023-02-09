@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import { AiOutlineSetting, AiOutlineMoneyCollect } from "react-icons/ai";
+import { getwallets } from "../../controllers/blockchain";
 
 const WalletITem = () => {
+
+  useEffect(() => {
+    (async () => {
+      console.log("wallets")
+     console.log(getwallets)
+    })();
+  }, []);
   return (
     <div className="border-l border-text px-2 flex justify-between items-center space-x-3 hover:border-PrimaryBlue group">
       <div className="bg-[#3A3A3C] group-hover:bg-PrimaryBlue/10 h-10 w-10 rounded-full flex justify-center items-center group-hover:text-PrimaryBlue">
