@@ -79,7 +79,7 @@ export const TokenDetails = () => {
                   }}
                   type="text"
                   className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
-                  placeholder="Enter Token Name as Listed On Coingecko"
+                  placeholder="Enter Token Name as Listed On Coingecko(Case-Sensitve)"
                 />
                 {name ? (
                   exist ? (

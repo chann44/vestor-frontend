@@ -23,7 +23,7 @@ export const BalanceCard = () => {
       {/* ETh Balance card */}
       <h1 className="text-2xl text-center">TOTAL BALANCE</h1>
       <h1 className="text-PrimaryBlue text-5xl font-bold text-center">
-        ${number.toString().slice(0, 3)}
+        ${totalBalance.toString().slice(0, 3)}
       </h1>
     </div>
   );
