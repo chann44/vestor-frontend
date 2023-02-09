@@ -113,7 +113,7 @@ export const TokenDetails = () => {
               rows={5}
               value={tokenInfo?.description.en}
               className="w-full bg-transparent outline-none focus:outline-none focus:border-none placeholder:text-text-faded"
-              placeholder="Enter Token Description"
+              placeholder="Enter Token Description(Optional)"
             />
           </div>
         </form>
