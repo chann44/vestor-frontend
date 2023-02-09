@@ -70,7 +70,7 @@ export const TokenDetails = () => {
       <div className="space-y-6">
         <form action="" className="space-y-8">
           <div className="bg-secondaryDark flex items-center w-full p-3 rounded-lg ">
-             (
+             
               <>
                 <input
                   value={name}
@@ -89,7 +89,7 @@ export const TokenDetails = () => {
                   )
                 ) : null}
               </>
-            )
+
           </div>
           <div className="bg-secondaryDark w-full p-3  rounded-lg">
             <input
